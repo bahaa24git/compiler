@@ -1,0 +1,8 @@
+/@ This is main function@/
+NOReturn decrease() {
+    Imw 3num = 5;
+    RepeatWhen (counter < num) {
+        reg3 = reg3 - 1;
+    }
+
+}
