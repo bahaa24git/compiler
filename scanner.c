@@ -5,6 +5,7 @@
 #include "scanner.h"
 
 Keyword keywords[] = {
+    {",", "Commma Seperator"},
     {"*", "Arithmetic Operation"},
     {"/", "Arithmetic Operation"},
     {"+", "Arithmetic Operation"},
@@ -56,6 +57,13 @@ int isValidIdentifier(const char *str) {
     }
     return 1;
 }
+int isdigit_custom(const char *token) {
+    if (!isdigit(token[0])) return 0;
+    for (int i = 1; token[i]; i++) {
+        if (!isdigit(token[i])) return 0;
+    }
+    return 1;
+}
 void tokenizeAndScanLine(char *line, int lineNumber, int *errorCount) {
     int len = strlen(line);
     for (int i = 0; i < len;) {
@@ -71,22 +79,8 @@ void tokenizeAndScanLine(char *line, int lineNumber, int *errorCount) {
                    lineNumber, line + i + 2);
             break;
         }
-
-        // Handle multi-character operators or symbols
-        if (line[i] == '/' && line[i + 1] == '@') {
-            printf("Line: %d Token Text: /@ Token Type: Comment Start\n", lineNumber);
-            i += 2;
-            continue;
-        }
-
-        if (line[i] == '@' && line[i + 1] == '/') {
-            printf("Line: %d Token Text: @/ Token Type: Comment End\n", lineNumber);
-            i += 2;
-            continue;
-        }
-
         // Handle symbols like { } ( ) = ;
-        if (strchr("{}()=;-", line[i])) {
+        if (strchr("{}()=;,+-/*><", line[i])) {
             char temp[2];
             temp[0] = line[i];
             temp[1] = '\0';
@@ -98,7 +92,7 @@ void tokenizeAndScanLine(char *line, int lineNumber, int *errorCount) {
 
         // Extract word/token
         int start = i;
-        while (i < len && !isspace(line[i]) && !strchr("{}()=;-", line[i])) {
+        while (i < len && !isspace(line[i]) && !strchr("{}()=;,+-/*><", line[i])) {
             if (line[i] == '/' && (line[i + 1] == '^' || line[i + 1] == '@')) break;
             i++;
         }
@@ -111,7 +105,7 @@ void tokenizeAndScanLine(char *line, int lineNumber, int *errorCount) {
             printf("Line: %d Token Text: %s Token Type: %s\n", lineNumber, token, type);
         } else if (isValidIdentifier(token)) {
             printf("Line: %d Token Text: %s Token Type: Identifier\n", lineNumber, token);
-        } else if (isdigit(token[0])) {
+        } else if (isdigit_custom(token)) {
             printf("Line: %d Token Text: %s Token Type: Constant\n", lineNumber, token);
         } else {
             printf("Line: %d Error in Token Text: %s\n", lineNumber, token);
@@ -125,115 +119,56 @@ void scanFile(const char *filename) {
         printf("Cannot open file %s\n", filename);
         return;
     }
-
     char line[256];
     int lineNumber = 1;
     int errorCount = 0;
     int inMultilineComment = 0;
-
+    char commentBuffer[1000] = "";  // To hold comment text
     while (fgets(line, sizeof(line), file)) {
+        char *commentStart = strstr(line, "/@");
+        char *commentEnd = strstr(line, "@/");
         if (inMultilineComment) {
-            if (strstr(line, "@/")) {
+            if (commentEnd) {
                 inMultilineComment = 0;
+                *commentEnd = '\0';
+                strcat(commentBuffer, line);  // Add current line up to @/
+                printf("[Comment Block] %s\n", commentBuffer);
                 printf("Line: %d Token Text: @/ Token Type: Comment End\n", lineNumber);
+                strcpy(commentBuffer, "");  // Reset
+                // Process anything after the comment
+                char *after = commentEnd + 2;
+                if (*after && strlen(after) > 0)
+                    tokenizeAndScanLine(after, lineNumber, &errorCount);
             } else {
-                printf("Line: %d Token Text: %s Token Type: Comment Content\n", lineNumber, strtok(line, "\n"));
+                strcat(commentBuffer, line);  // Keep accumulating comment lines
             }
             lineNumber++;
             continue;
         }
-
-        if (strstr(line, "/@")) {
-            inMultilineComment = 1;
+        if (commentStart && commentEnd && commentStart < commentEnd) {
+            // Same line comment
+            *commentStart = '\0';
+            char *after = commentEnd + 2;
+            tokenizeAndScanLine(line, lineNumber, &errorCount);
             printf("Line: %d Token Text: /@ Token Type: Comment Start\n", lineNumber);
-            lineNumber++;
-            continue;
+            printf("[Comment Block] %.*s\n", (int)(commentEnd - commentStart - 2), commentStart + 2);
+            printf("Line: %d Token Text: @/ Token Type: Comment End\n", lineNumber);
+            if (*after && strlen(after) > 0)
+                tokenizeAndScanLine(after, lineNumber, &errorCount);
+        } else if (commentStart) {
+            // Comment starts but doesn't end on this line
+            *commentStart = '\0';
+            tokenizeAndScanLine(line, lineNumber, &errorCount);
+            printf("Line: %d Token Text: /@ Token Type: Comment Start\n", lineNumber);
+            strcat(commentBuffer, commentStart + 2);
+            inMultilineComment = 1;
+        } else {
+            // No comment on this line
+            tokenizeAndScanLine(line, lineNumber, &errorCount);
         }
 
-        tokenizeAndScanLine(line, lineNumber, &errorCount);
         lineNumber++;
     }
-
-
     printf("\nTotal NO of errors: %d\n", errorCount);
     fclose(file);
 }
-// void scanFile(const char *filename) {
-//     FILE *file = fopen(filename, "r");
-//     if (!file) {
-//         printf("Cannot open file %s\n", filename);
-//         return;
-//     }
-//
-//     char line[256];
-//     int lineNumber = 1;
-//     int errorCount = 0;
-//     int inMultilineComment = 0;
-//
-//     while (fgets(line, sizeof(line), file)) {
-//         char *p = line;
-//         char *line_for_comment_start;
-//         if(strstr(line, "/^")) {
-//             line_for_comment_start = malloc(strlen(line) + 1);
-//             strcpy(line_for_comment_start,p);
-//         }
-//
-//         // Handle multiline comment start
-//         if (strstr(p, "/@")) {
-//             inMultilineComment = 1;
-//             printf("Line: %d Token Text: /@ Token Type: Comment Start\n", lineNumber);
-//             continue;
-//         }
-//
-//         // Handle multiline comment end
-//         if (inMultilineComment) {
-//             if (strstr(p, "@/")) {
-//                 inMultilineComment = 0;
-//                 printf("Line: %d Token Text: @/ Token Type: Comment End\n", lineNumber);
-//             } else {
-//                 printf("Line: %d Token Text: %s Token Type: Comment Content\n", lineNumber, strtok(line, "\n"));
-//             }
-//             lineNumber++;
-//             continue;
-//         }
-//
-//         char *token = strtok(line, " \t\n;");
-//         while (token != NULL) {
-//
-//             if (strstr(token, "/^")) {
-//                 char *comment_start = strstr(line_for_comment_start, "/^");
-//                 comment_start += 2;
-//                 printf("Line: %d Token Text: /^ Token Type: Single Line Comment, Comment Content: %s\n", lineNumber,comment_start);
-//                 free(line_for_comment_start);
-//                 if(!(token[0] == '/' && token[1] == '^')) {
-//                     token = strtok(token, "/^");
-//                 }
-//                 else {
-//                     break;
-//                 }
-//             }
-//             const char *type = getKeywordTokenType(token);
-//
-//             if (type) {
-//                 printf("Line: %d Token Text: %s Token Type: %s\n", lineNumber, token, type);
-//             } else if (isValidIdentifier(token)) {
-//                 printf("Line: %d Token Text: %s Token Type: Identifier\n", lineNumber, token);
-//             } else if (isdigit(token[0])) {
-//                 printf("Line: %d Token Text: %s Token Type: Constant\n", lineNumber, token);
-//             } else if (strcmp(token, "=") == 0) {
-//                 printf("Line: %d Token Text: = Token Type: Assignment operator\n", lineNumber);
-//             }
-//             else {
-//                 printf("Line: %d Error in Token Text: %s\n", lineNumber, token);
-//                 errorCount++;
-//             }
-//
-//             token = strtok(NULL, " \t\n;");
-//         }
-//         lineNumber++;
-//     }
-//
-//     printf("\nTotal NO of errors: %d\n", errorCount);
-//     fclose(file);
-// }
-

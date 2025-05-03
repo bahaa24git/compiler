@@ -1,7 +1,12 @@
-/@ This is main function@/
+Imw/@This is main function
+    This is one
+
+also in one@/4s = 3* 100+6;
+
+/@ This is two  @/
 NOReturn decrease() {
-    Imw 3num = 5;
-    RepeatWhen (counter < num) {
+    Imw 3num = 5, num2 = 33;
+    RepeatWhen (counter< num) {
         reg3 = reg3 - 1;
     }
 
