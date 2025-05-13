@@ -1,0 +1,488 @@
+Line : 1 Token Text: /@  Token Type: Comment
+Line : 2 Token Text: Project #3 Test Input File Token Type: Comment
+Line : 3 Token Text: This file demonstrates all language features Token Type: Comment
+Line : 4 Token Text: @/ Token Type: Comment
+Line : 6 Token Text: /^ Include statement for external files Token Type: Comment
+Line : 7 Token Text: Include Token Type: Inclusion
+Line : 7 Token Text: ( Token Type: Braces
+Line : 7 Token Text: helper.txt Token Type: String Literal
+Line : 7 Token Text: ) Token Type: Braces
+Line : 7 Token Text: ; Token Type: Punctuation
+Line : 1 Token Text: /^ Helper functions and definitions for test_input.txt Token Type: Comment
+Line : 2 Token Text:  Token Type: Comment
+Line : 3 Token Text: /^ Helper function to calculate the power of a number Token Type: Comment
+Line : 4 Token Text: Imw Token Type: Integer
+Line : 4 Token Text: power Token Type: Identifier
+Line : 4 Token Text: ( Token Type: Braces
+Line : 4 Token Text: Imw Token Type: Integer
+Line : 4 Token Text: base Token Type: Identifier
+Line : 4 Token Text: , Token Type: Punctuation
+Line : 4 Token Text: Imw Token Type: Integer
+Line : 4 Token Text: exponent Token Type: Identifier
+Line : 4 Token Text: ) Token Type: Braces
+Line : 4 Token Text: { Token Type: Braces
+Line : 5 Token Text: Imw Token Type: Integer
+Line : 5 Token Text: result Token Type: Identifier
+Line : 5 Token Text: = Token Type: Assignment operator
+Line : 5 Token Text: 1 Token Type: Constant
+Line : 5 Token Text: ; Token Type: Punctuation
+Line : 6 Token Text: Imw Token Type: Integer
+Line : 6 Token Text: i Token Type: Identifier
+Line : 6 Token Text: = Token Type: Assignment operator
+Line : 6 Token Text: 0 Token Type: Constant
+Line : 6 Token Text: ; Token Type: Punctuation
+Line : 7 Token Text:    Token Type: Comment
+Line : 8 Token Text: RepeatWhen Token Type: Loop
+Line : 8 Token Text: ( Token Type: Braces
+Line : 8 Token Text: i Token Type: Identifier
+Line : 8 Token Text: < Token Type: Relational operator
+Line : 8 Token Text: exponent Token Type: Identifier
+Line : 8 Token Text: ) Token Type: Braces
+Line : 8 Token Text: { Token Type: Braces
+Line : 9 Token Text:     result = result * base; Token Type: Comment
+Line : 10 Token Text:     i = i + 1; Token Type: Comment
+Line : 11 Token Text:   } Token Type: Comment
+Line : 12 Token Text:    Token Type: Comment
+Line : 13 Token Text: Turnback Token Type: Return
+Line : 13 Token Text: result Token Type: Identifier
+Line : 13 Token Text: ; Token Type: Punctuation
+Line : 14 Token Text: } Token Type: Comment
+Line : 15 Token Text:  Token Type: Comment
+Line : 16 Token Text: /^ Helper structure for geometric shapes Token Type: Comment
+Line : 17 Token Text: Loli Token Type: Struct
+Line : 17 Token Text: Shape Token Type: Identifier
+Line : 17 Token Text: { Token Type: Braces
+Line : 18 Token Text: Series Token Type: String
+Line : 18 Token Text: name Token Type: Identifier
+Line : 18 Token Text: ; Token Type: Punctuation
+Line : 19 Token Text: IMwf Token Type: Float
+Line : 19 Token Text: area Token Type: Identifier
+Line : 19 Token Text: ; Token Type: Punctuation
+Line : 20 Token Text: IMwf Token Type: Float
+Line : 20 Token Text: perimeter Token Type: Identifier
+Line : 20 Token Text: ; Token Type: Punctuation
+Line : 21 Token Text: }; Token Type: Comment
+Line : 22 Token Text:  Token Type: Comment
+Line : 23 Token Text: /^ Constant definitions Token Type: Comment
+Line : 24 Token Text: Imw Token Type: Integer
+Line : 24 Token Text: MAX_SIZE Token Type: Identifier
+Line : 24 Token Text: = Token Type: Assignment operator
+Line : 24 Token Text: 100 Token Type: Constant
+Line : 24 Token Text: ; Token Type: Punctuation
+Line : 25 Token Text: IMwf Token Type: Float
+Line : 25 Token Text: PI Token Type: Identifier
+Line : 25 Token Text: ; Token Type: Punctuation
+Line : 26 Token Text: PI = 3.14159265; Token Type: Comment
+Line : 9 Token Text: /^ Structure definition Token Type: Comment
+Line : 10 Token Text: Loli Token Type: Struct
+Line : 10 Token Text: Person Token Type: Identifier
+Line : 10 Token Text: { Token Type: Braces
+Line : 11 Token Text: Series Token Type: String
+Line : 11 Token Text: name Token Type: Identifier
+Line : 11 Token Text: ; Token Type: Punctuation
+Line : 12 Token Text: Imw Token Type: Integer
+Line : 12 Token Text: age Token Type: Identifier
+Line : 12 Token Text: ; Token Type: Punctuation
+Line : 13 Token Text: IMwf Token Type: Float
+Line : 13 Token Text: height Token Type: Identifier
+Line : 13 Token Text: ; Token Type: Punctuation
+Line : 14 Token Text: Chj Token Type: Character
+Line : 14 Token Text: gender Token Type: Identifier
+Line : 14 Token Text: ; Token Type: Punctuation
+Line : 15 Token Text: } Token Type: Braces
+Line : 17 Token Text: /^ Function with no return value Token Type: Comment
+Line : 18 Token Text: NOReturn Token Type: Void
+Line : 18 Token Text: printPerson Token Type: Identifier
+Line : 18 Token Text: ( Token Type: Braces
+Line : 18 Token Text: Series Token Type: String
+Line : 18 Token Text: name Token Type: Identifier
+Line : 18 Token Text: , Token Type: Punctuation
+Line : 18 Token Text: Imw Token Type: Integer
+Line : 18 Token Text: age Token Type: Identifier
+Line : 18 Token Text: ) Token Type: Braces
+Line : 18 Token Text: { Token Type: Braces
+Line : 19 Token Text: /^ This is a single-line comment Token Type: Comment
+Line : 20 Token Text: Series Token Type: String
+Line : 20 Token Text: msg Token Type: Identifier
+Line : 20 Token Text: ; Token Type: Punctuation
+Line : 21 Token Text: msg Token Type: Identifier
+Line : 21 Token Text: = Token Type: Assignment operator
+Line : 21 Token Text: "Name: " Token Type: String Literal
+Line : 21 Token Text: ; Token Type: Punctuation
+Line : 22 Token Text: OutLoop Token Type: Break
+Line : 22 Token Text: ; Token Type: Punctuation
+Line : 23 Token Text: } Token Type: Braces
+Line : 25 Token Text: /^ Function with integer return Token Type: Comment
+Line : 26 Token Text: Imw Token Type: Integer
+Line : 26 Token Text: factorial Token Type: Identifier
+Line : 26 Token Text: ( Token Type: Braces
+Line : 26 Token Text: Imw Token Type: Integer
+Line : 26 Token Text: n Token Type: Identifier
+Line : 26 Token Text: ) Token Type: Braces
+Line : 26 Token Text: { Token Type: Braces
+Line : 27 Token Text: IfTrue Token Type: Condition
+Line : 27 Token Text: ( Token Type: Braces
+Line : 27 Token Text: n Token Type: Identifier
+Line : 27 Token Text: <= Token Type: Relational operator
+Line : 27 Token Text: 1 Token Type: Constant
+Line : 27 Token Text: ) Token Type: Braces
+Line : 27 Token Text: { Token Type: Braces
+Line : 28 Token Text: Turnback Token Type: Return
+Line : 28 Token Text: 1 Token Type: Constant
+Line : 28 Token Text: ; Token Type: Punctuation
+Line : 29 Token Text: } Token Type: Braces
+Line : 30 Token Text: Otherwise Token Type: Condition
+Line : 30 Token Text: { Token Type: Braces
+Line : 31 Token Text: Turnback Token Type: Return
+Line : 31 Token Text: n Token Type: Identifier
+Line : 31 Token Text: * Token Type: Arithmetic Operation
+Line : 31 Token Text: factorial Token Type: Identifier
+Line : 31 Token Text: ( Token Type: Braces
+Line : 31 Token Text: n Token Type: Identifier
+Line : 31 Token Text: - Token Type: Arithmetic Operation
+Line : 31 Token Text: 1 Token Type: Constant
+Line : 31 Token Text: ) Token Type: Braces
+Line : 31 Token Text: ; Token Type: Punctuation
+Line : 32 Token Text: } Token Type: Braces
+Line : 33 Token Text: } Token Type: Braces
+Line : 35 Token Text: /^ Function with array parameter and float return Token Type: Comment
+Line : 36 Token Text: IMwf Token Type: Float
+Line : 36 Token Text: calculateAverage Token Type: Identifier
+Line : 36 Token Text: ( Token Type: Braces
+Line : 36 Token Text: IMwf Token Type: Float
+Line : 36 Token Text: scores Token Type: Identifier
+Line : 36 Token Text: [ Token Type: Braces
+Line : 36 Token Text: ] Token Type: Braces
+Line : 36 Token Text: , Token Type: Punctuation
+Line : 36 Token Text: Imw Token Type: Integer
+Line : 36 Token Text: count Token Type: Identifier
+Line : 36 Token Text: ) Token Type: Braces
+Line : 36 Token Text: { Token Type: Braces
+Line : 37 Token Text: IMwf Token Type: Float
+Line : 37 Token Text: sum Token Type: Identifier
+Line : 37 Token Text: = Token Type: Assignment operator
+Line : 37 Token Text: 0 Token Type: Constant
+Line : 37 Token Text: ; Token Type: Punctuation
+Line : 38 Token Text: Imw Token Type: Integer
+Line : 38 Token Text: i Token Type: Identifier
+Line : 38 Token Text: = Token Type: Assignment operator
+Line : 38 Token Text: 0 Token Type: Constant
+Line : 38 Token Text: ; Token Type: Punctuation
+Line : 40 Token Text: RepeatWhen Token Type: Loop
+Line : 40 Token Text: ( Token Type: Braces
+Line : 40 Token Text: i Token Type: Identifier
+Line : 40 Token Text: < Token Type: Relational operator
+Line : 40 Token Text: count Token Type: Identifier
+Line : 40 Token Text: ) Token Type: Braces
+Line : 40 Token Text: { Token Type: Braces
+Line : 41 Token Text: sum Token Type: Identifier
+Line : 41 Token Text: = Token Type: Assignment operator
+Line : 41 Token Text: sum Token Type: Identifier
+Line : 41 Token Text: + Token Type: Arithmetic Operation
+Line : 41 Token Text: scores Token Type: Identifier
+Line : 41 Token Text: [ Token Type: Braces
+Line : 41 Token Text: i Token Type: Identifier
+Line : 41 Token Text: ] Token Type: Braces
+Line : 41 Token Text: ; Token Type: Punctuation
+Line : 42 Token Text: i Token Type: Identifier
+Line : 42 Token Text: = Token Type: Assignment operator
+Line : 42 Token Text: i Token Type: Identifier
+Line : 42 Token Text: + Token Type: Arithmetic Operation
+Line : 42 Token Text: 1 Token Type: Constant
+Line : 42 Token Text: ; Token Type: Punctuation
+Line : 43 Token Text: } Token Type: Braces
+Line : 45 Token Text: Turnback Token Type: Return
+Line : 45 Token Text: sum Token Type: Identifier
+Line : 45 Token Text: / Token Type: Arithmetic Operation
+Line : 45 Token Text: count Token Type: Identifier
+Line : 45 Token Text: ; Token Type: Punctuation
+Line : 46 Token Text: } Token Type: Braces
+Line : 48 Token Text: /^ Main function with various language features Token Type: Comment
+Line : 49 Token Text: NOReturn Token Type: Void
+Line : 49 Token Text: main Token Type: Identifier
+Line : 49 Token Text: ( Token Type: Braces
+Line : 49 Token Text: ) Token Type: Braces
+Line : 49 Token Text: { Token Type: Braces
+Line : 50 Token Text: /@  Token Type: Comment
+Line : 51 Token Text:   Variable declarations with different types Token Type: Comment
+Line : 52 Token Text:   @/ Token Type: Comment
+Line : 53 Token Text: Imw Token Type: Integer
+Line : 53 Token Text: num Token Type: Identifier
+Line : 53 Token Text: = Token Type: Assignment operator
+Line : 53 Token Text: 42 Token Type: Constant
+Line : 53 Token Text: ; Token Type: Punctuation
+Line : 54 Token Text: SIMw Token Type: SInteger
+Line : 54 Token Text: negNum Token Type: Identifier
+Line : 54 Token Text: = Token Type: Assignment operator
+Line : 54 Token Text: -10 Token Type: Constant
+Line : 54 Token Text: ; Token Type: Punctuation
+Line : 55 Token Text: IMwf Token Type: Float
+Line : 55 Token Text: pi Token Type: Identifier
+Line : 55 Token Text: = Token Type: Assignment operator
+Line : 55 Token Text: 3 Token Type: Constant
+Line : 55 Token Text: ; Token Type: Punctuation
+Line : 56 Token Text: Chj Token Type: Character
+Line : 56 Token Text: initial Token Type: Identifier
+Line : 56 Token Text: = Token Type: Assignment operator
+Line : 56 Token Text: 'A' Token Type: Character Literal
+Line : 56 Token Text: ; Token Type: Punctuation
+Line : 57 Token Text: Series Token Type: String
+Line : 57 Token Text: greeting Token Type: Identifier
+Line : 57 Token Text: = Token Type: Assignment operator
+Line : 57 Token Text: "Hello, World!" Token Type: String Literal
+Line : 57 Token Text: ; Token Type: Punctuation
+Line : 59 Token Text: /^ Array declaration Token Type: Comment
+Line : 60 Token Text: IMwf Token Type: Float
+Line : 60 Token Text: grades Token Type: Identifier
+Line : 60 Token Text: [ Token Type: Braces
+Line : 60 Token Text: 5 Token Type: Constant
+Line : 60 Token Text: ] Token Type: Braces
+Line : 60 Token Text: ; Token Type: Punctuation
+Line : 62 Token Text: /^ Array assignments Token Type: Comment
+Line : 63 Token Text: grades Token Type: Identifier
+Line : 63 Token Text: [ Token Type: Braces
+Line : 63 Token Text: 0 Token Type: Constant
+Line : 63 Token Text: ] Token Type: Braces
+Line : 63 Token Text: = Token Type: Assignment operator
+Line : 63 Token Text: 85 Token Type: Constant
+Line : 63 Token Text: ; Token Type: Punctuation
+Line : 64 Token Text: grades Token Type: Identifier
+Line : 64 Token Text: [ Token Type: Braces
+Line : 64 Token Text: 1 Token Type: Constant
+Line : 64 Token Text: ] Token Type: Braces
+Line : 64 Token Text: = Token Type: Assignment operator
+Line : 64 Token Text: 90 Token Type: Constant
+Line : 64 Token Text: ; Token Type: Punctuation
+Line : 65 Token Text: grades Token Type: Identifier
+Line : 65 Token Text: [ Token Type: Braces
+Line : 65 Token Text: 2 Token Type: Constant
+Line : 65 Token Text: ] Token Type: Braces
+Line : 65 Token Text: = Token Type: Assignment operator
+Line : 65 Token Text: 78 Token Type: Constant
+Line : 65 Token Text: ; Token Type: Punctuation
+Line : 66 Token Text: grades Token Type: Identifier
+Line : 66 Token Text: [ Token Type: Braces
+Line : 66 Token Text: 3 Token Type: Constant
+Line : 66 Token Text: ] Token Type: Braces
+Line : 66 Token Text: = Token Type: Assignment operator
+Line : 66 Token Text: 92 Token Type: Constant
+Line : 66 Token Text: ; Token Type: Punctuation
+Line : 67 Token Text: grades Token Type: Identifier
+Line : 67 Token Text: [ Token Type: Braces
+Line : 67 Token Text: 4 Token Type: Constant
+Line : 67 Token Text: ] Token Type: Braces
+Line : 67 Token Text: = Token Type: Assignment operator
+Line : 67 Token Text: 88 Token Type: Constant
+Line : 67 Token Text: ; Token Type: Punctuation
+Line : 69 Token Text: /^ Structure usage Token Type: Comment
+Line : 70 Token Text: Person Token Type: Identifier
+Line : 70 Token Text: student Token Type: Identifier
+Line : 70 Token Text: ; Token Type: Punctuation
+Line : 71 Token Text: OutLoop Token Type: Break
+Line : 71 Token Text: ; Token Type: Punctuation
+Line : 73 Token Text: /^ Struct member assignments Token Type: Comment
+Line : 74 Token Text: student Token Type: Identifier
+Line : 74 Token Text: -> Token Type: Access Operator
+Line : 74 Token Text: name Token Type: Identifier
+Line : 74 Token Text: = Token Type: Assignment operator
+Line : 74 Token Text: "John Doe" Token Type: String Literal
+Line : 74 Token Text: ; Token Type: Punctuation
+Line : 75 Token Text: OutLoop Token Type: Break
+Line : 75 Token Text: ; Token Type: Punctuation
+Line : 76 Token Text: student Token Type: Identifier
+Line : 76 Token Text: -> Token Type: Access Operator
+Line : 76 Token Text: age Token Type: Identifier
+Line : 76 Token Text: = Token Type: Assignment operator
+Line : 76 Token Text: 20 Token Type: Constant
+Line : 76 Token Text: ; Token Type: Punctuation
+Line : 77 Token Text: OutLoop Token Type: Break
+Line : 77 Token Text: ; Token Type: Punctuation
+Line : 78 Token Text: student Token Type: Identifier
+Line : 78 Token Text: -> Token Type: Access Operator
+Line : 78 Token Text: height Token Type: Identifier
+Line : 78 Token Text: = Token Type: Assignment operator
+Line : 78 Token Text: 175 Token Type: Constant
+Line : 78 Token Text: . Token Type: Punctuation
+Line : 78 Token Text: 0 Token Type: Constant
+Line : 78 Token Text: ; Token Type: Punctuation
+Line : 79 Token Text: OutLoop Token Type: Break
+Line : 79 Token Text: ; Token Type: Punctuation
+Line : 80 Token Text: student Token Type: Identifier
+Line : 80 Token Text: -> Token Type: Access Operator
+Line : 80 Token Text: gender Token Type: Identifier
+Line : 80 Token Text: = Token Type: Assignment operator
+Line : 80 Token Text: 'M' Token Type: Character Literal
+Line : 80 Token Text: ; Token Type: Punctuation
+Line : 81 Token Text: OutLoop Token Type: Break
+Line : 81 Token Text: ; Token Type: Punctuation
+Line : 83 Token Text: /^ Conditional statement Token Type: Comment
+Line : 84 Token Text: IfTrue Token Type: Condition
+Line : 84 Token Text: ( Token Type: Braces
+Line : 84 Token Text: num Token Type: Identifier
+Line : 84 Token Text: > Token Type: Relational operator
+Line : 84 Token Text: 40 Token Type: Constant
+Line : 84 Token Text: ) Token Type: Braces
+Line : 84 Token Text: { Token Type: Braces
+Line : 85 Token Text: Series Token Type: String
+Line : 85 Token Text: message Token Type: Identifier
+Line : 85 Token Text: = Token Type: Assignment operator
+Line : 85 Token Text: "Number is greater than 40" Token Type: String Literal
+Line : 85 Token Text: ; Token Type: Punctuation
+Line : 86 Token Text: } Token Type: Braces
+Line : 87 Token Text: Otherwise Token Type: Condition
+Line : 87 Token Text: { Token Type: Braces
+Line : 88 Token Text: Series Token Type: String
+Line : 88 Token Text: message Token Type: Identifier
+Line : 88 Token Text: = Token Type: Assignment operator
+Line : 88 Token Text: "Number is not greater than 40" Token Type: String Literal
+Line : 88 Token Text: ; Token Type: Punctuation
+Line : 89 Token Text: } Token Type: Braces
+Line : 91 Token Text: /^ Loop with break Token Type: Comment
+Line : 92 Token Text: Imw Token Type: Integer
+Line : 92 Token Text: counter Token Type: Identifier
+Line : 92 Token Text: = Token Type: Assignment operator
+Line : 92 Token Text: 0 Token Type: Constant
+Line : 92 Token Text: ; Token Type: Punctuation
+Line : 93 Token Text: RepeatWhen Token Type: Loop
+Line : 93 Token Text: ( Token Type: Braces
+Line : 93 Token Text: counter Token Type: Identifier
+Line : 93 Token Text: < Token Type: Relational operator
+Line : 93 Token Text: 10 Token Type: Constant
+Line : 93 Token Text: ) Token Type: Braces
+Line : 93 Token Text: { Token Type: Braces
+Line : 94 Token Text: counter Token Type: Identifier
+Line : 94 Token Text: = Token Type: Assignment operator
+Line : 94 Token Text: counter Token Type: Identifier
+Line : 94 Token Text: + Token Type: Arithmetic Operation
+Line : 94 Token Text: 1 Token Type: Constant
+Line : 94 Token Text: ; Token Type: Punctuation
+Line : 95 Token Text: IfTrue Token Type: Condition
+Line : 95 Token Text: ( Token Type: Braces
+Line : 95 Token Text: counter Token Type: Identifier
+Line : 95 Token Text: == Token Type: Relational operator
+Line : 95 Token Text: 5 Token Type: Constant
+Line : 95 Token Text: ) Token Type: Braces
+Line : 95 Token Text: { Token Type: Braces
+Line : 96 Token Text: OutLoop Token Type: Break
+Line : 96 Token Text: ; Token Type: Punctuation
+Line : 97 Token Text: } Token Type: Braces
+Line : 98 Token Text: } Token Type: Braces
+Line : 100 Token Text: /^ Function calls Token Type: Comment
+Line : 101 Token Text: Imw Token Type: Integer
+Line : 101 Token Text: fact5 Token Type: Identifier
+Line : 101 Token Text: = Token Type: Assignment operator
+Line : 101 Token Text: factorial Token Type: Identifier
+Line : 101 Token Text: ( Token Type: Braces
+Line : 101 Token Text: 5 Token Type: Constant
+Line : 101 Token Text: ) Token Type: Braces
+Line : 101 Token Text: ; Token Type: Punctuation
+Line : 102 Token Text: IMwf Token Type: Float
+Line : 102 Token Text: avg Token Type: Identifier
+Line : 102 Token Text: = Token Type: Assignment operator
+Line : 102 Token Text: calculateAverage Token Type: Identifier
+Line : 102 Token Text: ( Token Type: Braces
+Line : 102 Token Text: grades Token Type: Identifier
+Line : 102 Token Text: , Token Type: Punctuation
+Line : 102 Token Text: 5 Token Type: Constant
+Line : 102 Token Text: ) Token Type: Braces
+Line : 102 Token Text: ; Token Type: Punctuation
+Line : 104 Token Text: /^ Reiterate loop Token Type: Comment
+Line : 105 Token Text: Imw Token Type: Integer
+Line : 105 Token Text: x Token Type: Identifier
+Line : 105 Token Text: = Token Type: Assignment operator
+Line : 105 Token Text: 0 Token Type: Constant
+Line : 105 Token Text: ; Token Type: Punctuation
+Line : 106 Token Text: Reiterate Token Type: Loop
+Line : 106 Token Text: { Token Type: Braces
+Line : 107 Token Text: x Token Type: Identifier
+Line : 107 Token Text: = Token Type: Assignment operator
+Line : 107 Token Text: x Token Type: Identifier
+Line : 107 Token Text: + Token Type: Arithmetic Operation
+Line : 107 Token Text: 1 Token Type: Constant
+Line : 107 Token Text: ; Token Type: Punctuation
+Line : 108 Token Text: IfTrue Token Type: Condition
+Line : 108 Token Text: ( Token Type: Braces
+Line : 108 Token Text: x Token Type: Identifier
+Line : 108 Token Text: >= Token Type: Relational operator
+Line : 108 Token Text: 3 Token Type: Constant
+Line : 108 Token Text: ) Token Type: Braces
+Line : 108 Token Text: { Token Type: Braces
+Line : 109 Token Text: OutLoop Token Type: Break
+Line : 109 Token Text: ; Token Type: Punctuation
+Line : 110 Token Text: } Token Type: Braces
+Line : 111 Token Text: } Token Type: Braces
+Line : 113 Token Text: /^ Arithmetic, relational, and logical operators Token Type: Comment
+Line : 114 Token Text: Imw Token Type: Integer
+Line : 114 Token Text: a Token Type: Identifier
+Line : 114 Token Text: = Token Type: Assignment operator
+Line : 114 Token Text: 10 Token Type: Constant
+Line : 114 Token Text: ; Token Type: Punctuation
+Line : 115 Token Text: Imw Token Type: Integer
+Line : 115 Token Text: b Token Type: Identifier
+Line : 115 Token Text: = Token Type: Assignment operator
+Line : 115 Token Text: 20 Token Type: Constant
+Line : 115 Token Text: ; Token Type: Punctuation
+Line : 116 Token Text: Imw Token Type: Integer
+Line : 116 Token Text: c Token Type: Identifier
+Line : 116 Token Text: = Token Type: Assignment operator
+Line : 116 Token Text: a Token Type: Identifier
+Line : 116 Token Text: + Token Type: Arithmetic Operation
+Line : 116 Token Text: b Token Type: Identifier
+Line : 116 Token Text: * Token Type: Arithmetic Operation
+Line : 116 Token Text: 2 Token Type: Constant
+Line : 116 Token Text: ; Token Type: Punctuation
+Line : 117 Token Text: Imw Token Type: Integer
+Line : 117 Token Text: d Token Type: Identifier
+Line : 117 Token Text: = Token Type: Assignment operator
+Line : 117 Token Text: ( Token Type: Braces
+Line : 117 Token Text: a Token Type: Identifier
+Line : 117 Token Text: + Token Type: Arithmetic Operation
+Line : 117 Token Text: b Token Type: Identifier
+Line : 117 Token Text: ) Token Type: Braces
+Line : 117 Token Text: * Token Type: Arithmetic Operation
+Line : 117 Token Text: 2 Token Type: Constant
+Line : 117 Token Text: ; Token Type: Punctuation
+Line : 119 Token Text: IfTrue Token Type: Condition
+Line : 119 Token Text: ( Token Type: Braces
+Line : 119 Token Text: ( Token Type: Braces
+Line : 119 Token Text: a Token Type: Identifier
+Line : 119 Token Text: < Token Type: Relational operator
+Line : 119 Token Text: b Token Type: Identifier
+Line : 119 Token Text: ) Token Type: Braces
+Line : 119 Token Text: && Token Type: Logic operators
+Line : 119 Token Text: ( Token Type: Braces
+Line : 119 Token Text: c Token Type: Identifier
+Line : 119 Token Text: != Token Type: Relational operator
+Line : 119 Token Text: d Token Type: Identifier
+Line : 119 Token Text: ) Token Type: Braces
+Line : 119 Token Text: ) Token Type: Braces
+Line : 119 Token Text: { Token Type: Braces
+Line : 120 Token Text: a Token Type: Identifier
+Line : 120 Token Text: = Token Type: Assignment operator
+Line : 120 Token Text: a Token Type: Identifier
+Line : 120 Token Text: + Token Type: Arithmetic Operation
+Line : 120 Token Text: 1 Token Type: Constant
+Line : 120 Token Text: ; Token Type: Punctuation
+Line : 121 Token Text: } Token Type: Braces
+Line : 123 Token Text: IfTrue Token Type: Condition
+Line : 123 Token Text: ( Token Type: Braces
+Line : 123 Token Text: a Token Type: Identifier
+Line : 123 Token Text: > Token Type: Relational operator
+Line : 123 Token Text: 0 Token Type: Constant
+Line : 123 Token Text: || Token Type: Logic operators
+Line : 123 Token Text: b Token Type: Identifier
+Line : 123 Token Text: < Token Type: Relational operator
+Line : 123 Token Text: 0 Token Type: Constant
+Line : 123 Token Text: ) Token Type: Braces
+Line : 123 Token Text: { Token Type: Braces
+Line : 124 Token Text: b Token Type: Identifier
+Line : 124 Token Text: = Token Type: Assignment operator
+Line : 124 Token Text: b Token Type: Identifier
+Line : 124 Token Text: - Token Type: Arithmetic Operation
+Line : 124 Token Text: 1 Token Type: Constant
+Line : 124 Token Text: ; Token Type: Punctuation
+Line : 125 Token Text: } Token Type: Braces
+Line : 127 Token Text: Turnback Token Type: Return
+Line : 127 Token Text: ; Token Type: Punctuation
+Line : 128 Token Text: } Token Type: Braces
+Total NO of errors: 0

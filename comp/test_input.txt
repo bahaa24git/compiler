@@ -1,0 +1,128 @@
+/@ 
+Project #3 Test Input File
+This file demonstrates all language features
+@/
+
+/^ Include statement for external files
+Include("helper.txt");
+
+/^ Structure definition
+Loli Person {
+  Series name;
+  Imw age;
+  IMwf height;
+  Chj gender;
+}
+
+/^ Function with no return value
+NOReturn printPerson(Series name, Imw age) {
+  /^ This is a single-line comment
+  Series msg;
+  msg = "Name: ";
+  OutLoop;
+}
+
+/^ Function with integer return
+Imw factorial(Imw n) {
+  IfTrue (n <= 1) {
+    Turnback 1;
+  }
+  Otherwise {
+    Turnback n * factorial(n - 1);
+  }
+}
+
+/^ Function with array parameter and float return
+IMwf calculateAverage(IMwf scores[], Imw count) {
+  IMwf sum = 0;
+  Imw i = 0;
+  
+  RepeatWhen (i < count) {
+    sum = sum + scores[i];
+    i = i + 1;
+  }
+  
+  Turnback sum / count;
+}
+
+/^ Main function with various language features
+NOReturn main() {
+  /@ 
+  Variable declarations with different types
+  @/
+  Imw num = 42;
+  SIMw negNum = -10;
+  IMwf pi = 3;
+  Chj initial = 'A';
+  Series greeting = "Hello, World!";
+  
+  /^ Array declaration
+  IMwf grades[5];
+  
+  /^ Array assignments
+  grades[0] = 85;
+  grades[1] = 90;
+  grades[2] = 78;
+  grades[3] = 92;
+  grades[4] = 88;
+  
+  /^ Structure usage
+  Person student;
+  OutLoop;
+  
+  /^ Struct member assignments
+  student->name = "John Doe";
+  OutLoop;
+  student->age = 20;
+  OutLoop;
+  student->height = 175.0;
+  OutLoop;
+  student->gender = 'M';
+  OutLoop;
+  
+  /^ Conditional statement
+  IfTrue (num > 40) {
+    Series message = "Number is greater than 40";
+  }
+  Otherwise {
+    Series message = "Number is not greater than 40";
+  }
+  
+  /^ Loop with break
+  Imw counter = 0;
+  RepeatWhen (counter < 10) {
+    counter = counter + 1;
+    IfTrue (counter == 5) {
+      OutLoop;
+    }
+  }
+  
+  /^ Function calls
+  Imw fact5 = factorial(5);
+  IMwf avg = calculateAverage(grades, 5);
+  
+  /^ Reiterate loop
+  Imw x = 0;
+  Reiterate {
+    x = x + 1;
+    IfTrue (x >= 3) {
+      OutLoop;
+    }
+  }
+  
+  /^ Arithmetic, relational, and logical operators
+  Imw a = 10;
+  Imw b = 20;
+  Imw c = a + b * 2;
+  Imw d = (a + b) * 2;
+  
+  IfTrue ((a < b) && (c != d)) {
+    a = a + 1;
+  }
+  
+  IfTrue (a > 0 || b < 0) {
+    b = b - 1;
+  }
+  
+  Turnback;
+}

@@ -1,0 +1,32 @@
+{
+	"bmi-installation" : null,
+	"compiler-frontend-variant" : "GNU",
+	"compiler-id" : "Clang",
+	"compiler-simulate-id" : "",
+	"config" : "Debug",
+	"cxx-modules" : {},
+	"database-info" : null,
+	"dir-cur-bld" : "/home/fedusr/compiler/build",
+	"dir-cur-src" : "/home/fedusr/compiler",
+	"dir-top-bld" : "/home/fedusr/compiler/build",
+	"dir-top-src" : "/home/fedusr/compiler",
+	"exports" : [],
+	"forward-modules-from-target-dirs" : [],
+	"include-dirs" : [],
+	"language" : "CXX",
+	"linked-target-dirs" : [],
+	"module-dir" : "/home/fedusr/compiler/build/CMakeFiles/compilerCpp.dir",
+	"sources" : 
+	{
+		"CMakeFiles/compilerCpp.dir/main.cpp.o" : 
+		{
+			"language" : "CXX",
+			"source" : "/home/fedusr/compiler/main.cpp"
+		},
+		"CMakeFiles/compilerCpp.dir/scanner.cpp.o" : 
+		{
+			"language" : "CXX",
+			"source" : "/home/fedusr/compiler/scanner.cpp"
+		}
+	}
+}

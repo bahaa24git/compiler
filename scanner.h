@@ -5,8 +5,8 @@
 #ifndef SCANNER_H
 #define SCANNER_H
 typedef struct {
-    char *keyword;
-    char *tokenType;
+    const char *keyword;
+    const char *tokenType;
 } Keyword;
 void scanFile(const char *filename);
 #endif //SCANNER_H

@@ -1,0 +1,26 @@
+/^ Helper functions and definitions for test_input.txt
+
+/^ Helper function to calculate the power of a number
+Imw power(Imw base, Imw exponent) {
+  Imw result = 1;
+  Imw i = 0;
+  
+  RepeatWhen (i < exponent) {
+    result = result * base;
+    i = i + 1;
+  }
+  
+  Turnback result;
+}
+
+/^ Helper structure for geometric shapes
+Loli Shape {
+  Series name;
+  IMwf area;
+  IMwf perimeter;
+};
+
+/^ Constant definitions
+Imw MAX_SIZE = 100;
+IMwf PI;
+PI = 3.14159265;

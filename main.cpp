@@ -2,6 +2,6 @@
 #include "scanner.h"
 int main()
 {
-    scanFile("D:\\anas\\CLion\\compiler\\input.txt");
+    scanFile("/home/fedusr/compiler/input.txt");
     return 0;
 }
