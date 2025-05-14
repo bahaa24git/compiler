@@ -3,393 +3,982 @@
 //
 
 #include "Parser.h"
-Token Parser::peek() {
-    if (current >= tokens.size()) {
+Token Parser::peek()
+{
+    if (current >= tokens.size())
+    {
         return {-1, "", "EOF"};
     }
     return tokens[current];
 }
 
-Token Parser::previous() {
+Token Parser::previous()
+{
     return tokens[current - 1];
 }
 
-bool Parser::checkType(const string& type) {
-    if (current >= tokens.size()) return false;
+bool Parser::checkType(const string &type)
+{
+    if (current >= tokens.size())
+        return false;
     return tokens[current].type == type;
 }
 
-bool Parser::checkText(const string& text) {
-    if (current >= tokens.size()) return false;
+bool Parser::checkText(const string &text)
+{
+    if (current >= tokens.size())
+        return false;
     return tokens[current].text == text;
 }
 
-bool Parser::matchType(const string& type) {
-    if (checkType(type)) {
+bool Parser::matchType(const string &type)
+{
+    if (checkType(type))
+    {
         advance();
         return true;
     }
     return false;
 }
 
-bool Parser::matchText(const string& text) {
-    if (checkText(text)) {
+bool Parser::matchText(const string &text)
+{
+    if (checkText(text))
+    {
         advance();
         return true;
     }
     return false;
 }
 
-void Parser::advance() {
-    if (current < tokens.size()) {
+void Parser::advance()
+{
+    if (current < tokens.size())
+    {
         current++;
     }
 }
 
-void Parser::error(const string& message) {
+void Parser::error(const string &message)
+{
     Token token = peek();
     cerr << "Line : " << token.lineNumber << " Not Matched - Error: " << message;
-    if (token.lineNumber != -1) {
+    if (token.lineNumber != -1)
+    {
         cerr << " (found '" << token.text << "')";
     }
     cerr << endl;
     errorCount++;
 }
 
-void Parser::success(const string& rule, int lineNumber) {
+void Parser::success(const string &rule, int lineNumber)
+{
     cout << "Line : " << lineNumber << " Matched Rule used: " << rule << endl;
 }
 
-
-
-
-
 ///////////////////////////////14, 18-34 and 35. value → INT_NUM | FLOAT_NUM we only have constant
-bool Parser::parseRelOp() {
-    if( matchText("<=") || matchText(">=") ||
+bool Parser::parseRelOp()
+{
+    int startLine = peek().lineNumber;
+    if (matchText("<=") || matchText(">=") ||
         matchText("==") || matchText("!=") ||
         matchText("<") || matchText(">") ||
-        matchText("&&") || matchText("||") )
+        matchText("&&") || matchText("||"))
+    {
+        success("rel-op", startLine);
         return true;
+    }
+    error("Expected relational operator");
     return false;
 }
-bool Parser::parseSimpleExpression() {
-    if(!parseAdditiveExpression())
+
+bool Parser::parseSimpleExpression()
+{
+    int startLine = peek().lineNumber;
+    if (!parseAdditiveExpression())
+    {
+        error("Expected additive expression");
         return false;
+    }
+
     while (current < tokens.size() && parseRelOp())
     {
-        if (!parseAdditiveExpression()) return false;
+        if (!parseAdditiveExpression())
+        {
+            error("Expected additive expression after relational operator");
+            return false;
+        }
     }
+
+    success("simple-expression", startLine);
     return true;
 }
-bool Parser::parseIdAssign() {
+
+bool Parser::parseIdAssign()
+{
+    int startLine = peek().lineNumber;
     if (matchType("Identifier"))
+    {
+        success("identifier", startLine);
         return true;
+    }
     return false;
 }
-bool Parser::parseArgList() {
-    if(!parseExpression())
+
+bool Parser::parseArgList()
+{
+    int startLine = peek().lineNumber;
+    if (!parseExpression())
+    {
+        error("Expected expression in argument list");
         return false;
+    }
+
     while (current < tokens.size() && matchText(","))
     {
-        if (!parseExpression()) return false;
+        if (!parseExpression())
+        {
+            error("Expected expression after ',' in argument list");
+            return false;
+        }
     }
+
+    success("arg-list", startLine);
     return true;
 }
-bool Parser::parseArgs() {
-    if(parseArgList())
-        return true;
-    // epsilon production (empty args)
-    return true;
-}
-bool Parser::parseCall() {
-    if (parseIdAssign())
-        if(matchText("("))
-            if(parseArgs())
-            if(matchText(")"))
-                return true;
-    return false;
-}
-bool Parser::parseValue() {//INT_NUM | FLOAT_NUM ???? 35
-    if(matchType("Constant"))
-        return true;
-    return false;
-}
-bool Parser::parsePosNum() {
-    if(matchText("+"))
-        if(parseValue())
-            return true;
-    return false;
-}
-bool Parser::parseNegNum() {
-    if(matchText("-"))
-        if(parseValue())
-            return true;
-    return false;
-}
-bool Parser::parseSignedNum() {
-    if(parsePosNum())
-        return true;
-    if(parseNegNum())
-        return true;
-    return false;
-}
-bool Parser::parseUnsignedNum() {
-    if(parseValue())
-        return true;
-    return false;
-}
 
-
-
-bool Parser::parseTypeSpecifier() {
-
-    if (matchText("Imw")) {
-        return true;
-    } else if (matchText("SIMw")) {
-        return true;
-    } else if (matchText("Chj")) {
-        return true;
-    } else if (matchText("Series")) {
-        return true;
-    } else if (matchText("IMwf")) {
-        return true;
-    } else if (matchText("SIMwf")) {
-        return true;
-    } else if (matchText("NOReturn")) {
-        return true;
-    }
-    return false;
-}
-bool Parser::parseParams() {
-    if (matchText("NOReturn")) return true;
-    if (checkText(")")) return true; // ε
-    return parseParamList();
-}
-
-bool Parser::parseParamList(){
+bool Parser::parseArgs()
+{
     int startLine = peek().lineNumber;
-    
-    if (parseParam()) {
-        while (matchText(",")) {
-            if (!parseParam()) {
+    if (parseArgList())
+    {
+        success("args", startLine);
+        return true;
+    }
+    // epsilon production (empty args)
+    success("args (empty)", startLine);
+    return true;
+}
+
+bool Parser::parseCall()
+{
+    int startLine = peek().lineNumber;
+    if (parseIdAssign())
+    {
+        if (matchText("("))
+        {
+            if (parseArgs())
+            {
+                if (matchText(")"))
+                {
+                    success("call", startLine);
+                    return true;
+                }
+                error("Expected ')' to close function call");
+                return false;
+            }
+            error("Invalid arguments in function call");
+            return false;
+        }
+        return false;
+    }
+    return false;
+}
+
+bool Parser::parseValue()
+{
+    int startLine = peek().lineNumber;
+    if (matchType("Constant"))
+    {
+        success("value (constant)", startLine);
+        return true;
+    }
+    return false;
+}
+
+bool Parser::parsePosNum()
+{
+    int startLine = peek().lineNumber;
+    if (matchText("+"))
+    {
+        if (parseValue())
+        {
+            success("positive-number", startLine);
+            return true;
+        }
+        error("Expected value after '+'");
+        return false;
+    }
+    return false;
+}
+
+bool Parser::parseNegNum()
+{
+    int startLine = peek().lineNumber;
+    if (matchText("-"))
+    {
+        if (parseValue())
+        {
+            success("negative-number", startLine);
+            return true;
+        }
+        error("Expected value after '-'");
+        return false;
+    }
+    return false;
+}
+
+bool Parser::parseSignedNum()
+{
+    int startLine = peek().lineNumber;
+    if (parsePosNum())
+    {
+        success("signed-number", startLine);
+        return true;
+    }
+    if (parseNegNum())
+    {
+        success("signed-number", startLine);
+        return true;
+    }
+    return false;
+}
+
+bool Parser::parseUnsignedNum()
+{
+    int startLine = peek().lineNumber;
+    if (parseValue())
+    {
+        success("unsigned-number", startLine);
+        return true;
+    }
+    return false;
+}
+
+bool Parser::parseNum()
+{
+    int startLine = peek().lineNumber;
+    if (parseSignedNum())
+    {
+        success("number (signed)", startLine);
+        return true;
+    }
+    if (parseUnsignedNum())
+    {
+        success("number (unsigned)", startLine);
+        return true;
+    }
+    return false;
+}
+
+bool Parser::parseTypeSpecifier()
+{
+    int startLine = peek().lineNumber;
+    if (matchText("Imw") || matchText("SIMw") || matchText("Chj") ||
+        matchText("Series") || matchText("IMwf") || matchText("SIMwf") ||
+        matchText("NOReturn"))
+    {
+        success("type-specifier", startLine);
+        return true;
+    }
+    return false;
+}
+
+bool Parser::parseParams()
+{
+    int startLine = peek().lineNumber;
+    if (matchText("NOReturn"))
+    {
+        success("params (NOReturn)", startLine);
+        return true;
+    }
+
+    if (checkText(")"))
+    {
+        success("params (empty)", startLine); // ε
+        return true;
+    }
+
+    if (parseParamList())
+    {
+        success("params", startLine);
+        return true;
+    }
+
+    error("Expected parameters or empty parameter list");
+    return false;
+}
+
+bool Parser::parseParamList()
+{
+    int startLine = peek().lineNumber;
+
+    if (parseParam())
+    {
+        while (matchText(","))
+        {
+            if (!parseParam())
+            {
                 error("Expected parameter after ','");
                 return false;
             }
-        }   
+        }
         success("param-list", startLine);
         return true;
     }
     return false;
 }
 
-bool Parser::parseParam(){
+bool Parser::parseParam()
+{
     int startLine = peek().lineNumber;
-    if (parseTypeSpecifier()) {
-        if (matchType("Identifier")) {
+    if (parseTypeSpecifier())
+    {
+        if (matchType("Identifier"))
+        {
             success("param", startLine);
             return true;
-        } else {
+        }
+        else
+        {
             error("Expected identifier after type specifier in parameter");
         }
     }
     return false;
 }
 
-bool Parser::parseNum() {
-    if(parseSignedNum())
-            return true;
-    if(parseUnsignedNum())
-            return true;
+bool Parser::parseFactor()
+{
+    int startLine = peek().lineNumber;
+
+    if (parseCall())
+    {
+        success("factor (call)", startLine);
+        return true;
+    }
+    else if (parseNum())
+    {
+        success("factor (number)", startLine);
+        return true;
+    }
+    else if (parseExpressionWithBraces())
+    {
+        success("factor (braced expr)", startLine);
+        return true;
+    }
+    else if (parseIdAssign())
+    {
+        success("factor (identifier)", startLine);
+        return true;
+    }
+
+    error("Expected factor (call, number, parenthesized expression, or identifier)");
     return false;
 }
-bool Parser::parseFactor() {
-    return parseCall() || parseNum() || parseExpressionWithBraces() || parseIdAssign();
+bool Parser::parseMulOp()
+{
+    int startLine = peek().lineNumber;
+    if (matchText("*") || matchText("/"))
+    {
+        success("mul-op", startLine);
+        return true;
+    }
+    return false;
 }
-bool Parser::parseMulOp() {
-    if(!(matchText("*") || matchText("/")))
+bool Parser::parseTerm()
+{
+    int startLine = peek().lineNumber;
+    if (!parseFactor())
+    {
+        error("Expected factor in term");
         return false;
-    return true;
-}
-bool Parser::parseTerm() {
-    if (!parseFactor()) return false;
+    }
 
     while (current < tokens.size() && parseMulOp())
     {
-        if (!parseFactor()) return false;
+        if (!parseFactor())
+        {
+            error("Expected factor after '*' or '/'");
+            return false;
+        }
     }
+
+    success("term", startLine);
     return true;
 }
-bool Parser::parseAddOp() {
-    if(!(matchText("+") || matchText("-")))
+bool Parser::parseAddOp()
+{
+    int startLine = peek().lineNumber;
+    if (matchText("+") || matchText("-"))
+    {
+        success("add-op", startLine);
+        return true;
+    }
+    return false;
+}
+bool Parser::parseAdditiveExpression()
+{
+    int startLine = peek().lineNumber;
+    if (!parseTerm())
+    {
+        error("Expected term in additive expression");
         return false;
-    return true;
-}
-bool Parser::parseAdditiveExpression() {
-    if (!parseTerm()) return false;
+    }
 
     while (current < tokens.size() && parseAddOp())
     {
-        if (!parseTerm()) return false;
+        if (!parseTerm())
+        {
+            error("Expected term after '+' or '-'");
+            return false;
+        }
     }
+
+    success("additive-expression", startLine);
     return true;
 }
 
-bool Parser::parseExpression() {//this an important one
-    if (parseIdAssign()) {
-        if (matchType("Assignment operator")) {
-            return parseExpression();
+bool Parser::parseExpression()
+{
+    int startLine = peek().lineNumber;
+    if (parseIdAssign())
+    {
+        if (matchType("Assignment operator"))
+        {
+            if (parseExpression())
+            {
+                success("assignment-expression", startLine);
+                return true;
+            }
+            error("Expected expression after assignment operator");
+            return false;
         }
+        success("identifier-expression", startLine);
         return true;
     }
-    return parseSimpleExpression();
-}
-bool Parser::parseExpressionWithBraces() {
-    if (matchText("("))
-        if(parseExpression())
-            if (matchText(")"))
-                return true;
+    if (parseSimpleExpression())
+    {
+        success("expression", startLine);
+        return true;
+    }
+    error("Expected valid expression");
     return false;
-
 }
-bool Parser::parseExpressionStatement() {
-    if(parseExpression()) {
-        if (matchText(";")) {
-            cout << "Line: " << tokens[current].lineNumber << " Matched Rule: expression-statement\n";
+bool Parser::parseExpressionWithBraces()
+{
+    int startLine = peek().lineNumber;
+    if (matchText("("))
+    {
+        if (parseExpression())
+        {
+            if (matchText(")"))
+            {
+                success("expression-with-braces", startLine);
+                return true;
+            }
+            error("Expected closing parenthesis ')'");
+            return false;
+        }
+        error("Expected expression inside parentheses");
+        return false;
+    }
+    return false;
+}
+bool Parser::parseExpressionStatement()
+{
+    int startLine = peek().lineNumber;
+    if (parseExpression())
+    {
+        if (matchText(";"))
+        {
+            success("expression-statement", startLine);
             return true;
         }
+        error("Expected ';' after expression");
+        return false;
     }
-    else if (matchText(";")) {
-        cout << "Line: " << tokens[current].lineNumber << " Matched Rule: expression-statement\n";
+    else if (matchText(";"))
+    {
+        success("empty-statement", startLine);
         return true;
     }
     return false;
 }
-bool Parser::parseStatementList() {
-    while (parseStatement());
-    return true; // epsilon allowed
-}
-bool Parser::parseSelectionStatement() {
-    if (!matchText("IfTrue")) return false;
-    if (!matchText("(")) return false;
-    if (!parseExpression()) return false;
-    if (!matchText(")")) return false;
-    if (!parseStatement()) return false;
-
-    if (matchText("Otherwise")) {
-        if (!parseStatement()) return false;
-    }
-    return true;
-}
-bool Parser::parseIterationStatement() {
-    if (matchText("RepeatWhen")) {
-        if (!matchText("(")) return false;
-        if (!parseExpression()) return false;
-        if (!matchText(")")) return false;
-        if (!parseStatement()) return false;
-        return true;
-    }
-    if (matchText("Reiterate")) {
-        if (!matchText("(")) return false;
-        if (!parseExpression()) return false;
-        if (!matchText(";")) return false;
-        if (!parseExpression()) return false;
-        if (!matchText(";")) return false;
-        if (!parseExpression()) return false;
-        if (!matchText(")")) return false;
-        if (!parseStatement()) return false;
-        return true;
-    }
-    return false;
-}
-bool Parser::parseJumpStatement() {
-    if (matchText("Turnback")) {
-        if (!parseExpression()) return false;
-        if (!matchText(";")) return false;
-        return true;
-    }
-    if (matchText("Stop")) {
-        if (!matchText(";")) return false;
-        return true;
-    }
-    return false;
-}
-bool Parser::parseStatement() {
-    if (parseExpressionStatement()) return true;
-    if (parseCompoundStatement()) return true;
-    if (parseSelectionStatement()) return true;
-    if (parseIterationStatement()) return true;
-    if (parseJumpStatement()) return true;
-    return false;
-}
-
-bool Parser::parseCompoundStatement() {
-    if (!matchText("{")) return false;
-    parseComment(); // optional comment before declarations
-    if (!parseLocalDeclarations()) return false;
-    if (!parseStatementList()) return false;
-    if (!matchText("}")) return false;
-    return true;
-}
-bool Parser::parseVarDeclaration(){
+bool Parser::parseStatementList()
+{
     int startLine = peek().lineNumber;
-    if (parseTypeSpecifier()) {
-        if (matchType("Identifier")) {
-            if (matchText(";")) {
+    bool foundStatement = false;
+
+    while (parseStatement())
+    {
+        foundStatement = true;
+    }
+
+    if (foundStatement)
+    {
+        success("statement-list", startLine);
+    }
+    else
+    {
+        success("statement-list (empty)", startLine); // epsilon case
+    }
+    return true;
+}
+bool Parser::parseSelectionStatement()
+{
+    int startLine = peek().lineNumber;
+    if (!matchText("IfTrue"))
+    {
+        return false;
+    }
+
+    if (!matchText("("))
+    {
+        error("Expected '(' after 'IfTrue'");
+        return false;
+    }
+
+    if (!parseExpression())
+    {
+        error("Expected expression in if condition");
+        return false;
+    }
+
+    if (!matchText(")"))
+    {
+        error("Expected ')' after if condition");
+        return false;
+    }
+
+    if (!parseStatement())
+    {
+        error("Expected statement in if body");
+        return false;
+    }
+
+    if (matchText("Otherwise"))
+    {
+        if (!parseStatement())
+        {
+            error("Expected statement after 'Otherwise'");
+            return false;
+        }
+        success("if-else-statement", startLine);
+    }
+    else
+    {
+        success("if-statement", startLine);
+    }
+
+    return true;
+}
+bool Parser::parseIterationStatement()
+{
+    int startLine = peek().lineNumber;
+
+    if (matchText("RepeatWhen"))
+    {
+        if (!matchText("("))
+        {
+            error("Expected '(' after 'RepeatWhen'");
+            return false;
+        }
+
+        if (!parseExpression())
+        {
+            error("Expected condition expression in RepeatWhen statement");
+            return false;
+        }
+
+        if (!matchText(")"))
+        {
+            error("Expected ')' after condition in RepeatWhen statement");
+            return false;
+        }
+
+        if (!parseStatement())
+        {
+            error("Expected statement in RepeatWhen body");
+            return false;
+        }
+
+        success("while-statement", startLine);
+        return true;
+    }
+
+    if (matchText("Reiterate"))
+    {
+        if (!matchText("("))
+        {
+            error("Expected '(' after 'Reiterate'");
+            return false;
+        }
+
+        if (!parseExpression())
+        {
+            error("Expected initialization expression in Reiterate statement");
+            return false;
+        }
+
+        if (!matchText(";"))
+        {
+            error("Expected ';' after initialization in Reiterate statement");
+            return false;
+        }
+
+        if (!parseExpression())
+        {
+            error("Expected condition expression in Reiterate statement");
+            return false;
+        }
+
+        if (!matchText(";"))
+        {
+            error("Expected ';' after condition in Reiterate statement");
+            return false;
+        }
+
+        if (!parseExpression())
+        {
+            error("Expected update expression in Reiterate statement");
+            return false;
+        }
+
+        if (!matchText(")"))
+        {
+            error("Expected ')' after update expression in Reiterate statement");
+            return false;
+        }
+
+        if (!parseStatement())
+        {
+            error("Expected statement in Reiterate body");
+            return false;
+        }
+
+        success("for-statement", startLine);
+        return true;
+    }
+
+    return false;
+}
+bool Parser::parseJumpStatement()
+{
+    int startLine = peek().lineNumber;
+
+    if (matchText("Turnback"))
+    {
+        if (!parseExpression())
+        {
+            error("Expected expression after 'Turnback'");
+            return false;
+        }
+
+        if (!matchText(";"))
+        {
+            error("Expected ';' after return expression");
+            return false;
+        }
+
+        success("return-statement", startLine);
+        return true;
+    }
+
+    if (matchText("Stop"))
+    {
+        if (!matchText(";"))
+        {
+            error("Expected ';' after 'Stop'");
+            return false;
+        }
+
+        success("stop-statement", startLine);
+        return true;
+    }
+
+    return false;
+}
+bool Parser::parseStatement()
+{
+    int startLine = peek().lineNumber;
+
+    if (parseExpressionStatement())
+    {
+        success("statement (expression)", startLine);
+        return true;
+    }
+
+    if (parseCompoundStatement())
+    {
+        success("statement (compound)", startLine);
+        return true;
+    }
+
+    if (parseSelectionStatement())
+    {
+        success("statement (selection)", startLine);
+        return true;
+    }
+
+    if (parseIterationStatement())
+    {
+        success("statement (iteration)", startLine);
+        return true;
+    }
+
+    if (parseJumpStatement())
+    {
+        success("statement (jump)", startLine);
+        return true;
+    }
+
+    return false;
+}
+
+bool Parser::parseCompoundStatement()
+{
+    int startLine = peek().lineNumber;
+
+    if (!matchText("{"))
+    {
+        return false;
+    }
+
+    parseComment(); // optional comment before declarations
+
+    if (!parseLocalDeclarations())
+    {
+        error("Failed to parse local declarations in compound statement");
+        return false;
+    }
+
+    if (!parseStatementList())
+    {
+        error("Failed to parse statement list in compound statement");
+        return false;
+    }
+
+    if (!matchText("}"))
+    {
+        error("Expected '}' to close compound statement");
+        return false;
+    }
+
+    success("compound-statement", startLine);
+    return true;
+}
+bool Parser::parseVarDeclaration()
+{
+    int startLine = peek().lineNumber;
+    if (parseTypeSpecifier())
+    {
+        if (matchType("Identifier"))
+        {
+            if (matchText(";"))
+            {
                 success("var-declaration", startLine);
                 return true;
-            } else {
+            }
+            else
+            {
                 error("Expected ';' after variable declaration");
             }
         }
     }
     return false;
 }
-bool Parser::parseFunDeclaration() {
-    if (parseComment()) {
-        if (parseTypeSpecifier() && matchType("Identifier")) {
+bool Parser::parseFunDeclaration()
+{
+    int startLine = peek().lineNumber;
+
+    if (parseComment())
+    {
+        if (parseTypeSpecifier() && matchType("Identifier"))
+        {
             success("fun-declaration (comment-style)", previous().lineNumber);
             return true;
         }
+        error("Expected type specifier and identifier after comment in function declaration");
         return false;
     }
 
-    if (parseTypeSpecifier() && matchType("Identifier") &&
-        matchText("(") && parseParams() && matchText(")") &&
-        parseCompoundStatement()) {
-        success("fun-declaration", previous().lineNumber);
-        return true;
+    if (parseTypeSpecifier())
+    {
+        if (!matchType("Identifier"))
+        {
+            error("Expected function name (identifier) after return type");
+            return false;
         }
+
+        if (!matchText("("))
+        {
+            error("Expected '(' after function name");
+            return false;
+        }
+
+        if (!parseParams())
+        {
+            error("Invalid function parameters");
+            return false;
+        }
+
+        if (!matchText(")"))
+        {
+            error("Expected ')' after function parameters");
+            return false;
+        }
+
+        if (!parseCompoundStatement())
+        {
+            error("Invalid function body");
+            return false;
+        }
+
+        success("fun-declaration", startLine);
+        return true;
+    }
 
     return false;
 }
-bool Parser::parseLocalDeclarations() {
-    while (parseVarDeclaration());
-    return true; // epsilon
+bool Parser::parseLocalDeclarations()
+{
+    int startLine = peek().lineNumber;
+    bool foundDeclaration = false;
+
+    while (parseVarDeclaration())
+    {
+        foundDeclaration = true;
+    }
+
+    if (foundDeclaration)
+    {
+        success("local-declarations", startLine);
+    }
+    else
+    {
+        success("local-declarations (empty)", startLine); // epsilon case
+    }
+    return true;
 }
-bool Parser::parseDeclaration() {
-    return parseVarDeclaration() || parseFunDeclaration();
+bool Parser::parseDeclaration()
+{
+    int startLine = peek().lineNumber;
+
+    if (parseVarDeclaration())
+    {
+        success("declaration (variable)", startLine);
+        return true;
+    }
+
+    if (parseFunDeclaration())
+    {
+        success("declaration (function)", startLine);
+        return true;
+    }
+
+    return false;
 }
-bool Parser::parseDeclarationList() {
-    if (!parseDeclaration()) return false;
-    while (parseDeclaration());
+bool Parser::parseDeclarationList()
+{
+    int startLine = peek().lineNumber;
+
+    if (!parseDeclaration())
+    {
+        error("Expected at least one declaration in declaration list");
+        return false;
+    }
+
+    while (parseDeclaration())
+        ;
+
+    success("declaration-list", startLine);
     return true;
 }
 
-bool Parser::parseProgram() {
-    return parseDeclarationList() || parseComment() || parseIncludeCommand();
+bool Parser::parseProgram()
+{
+    int startLine = peek().lineNumber;
+
+    if (parseDeclarationList())
+    {
+        success("program (declaration-list)", startLine);
+        return true;
+    }
+
+    if (parseComment())
+    {
+        success("program (comment)", startLine);
+        return true;
+    }
+
+    if (parseIncludeCommand())
+    {
+        success("program (include)", startLine);
+        return true;
+    }
+
+    error("Expected valid program structure");
+    return false;
 }
 
 //////not implemented yet
 
-bool Parser::parseComment(){}
-bool Parser::parseIncludeCommand(){}
-bool Parser::parseFname(){}
+bool Parser::parseComment()
+{
+    int startLine = peek().lineNumber;
 
+    // This is a placeholder implementation
+    // When implementing the actual comment parsing logic,
+    // use the success and error functions as shown below
 
+    // On success:
+    // success("comment", startLine);
+    // return true;
+
+    // On error:
+    // error("Invalid comment structure");
+    // return false;
+
+    return false;
+}
+bool Parser::parseIncludeCommand()
+{
+    int startLine = peek().lineNumber;
+
+    // This is a placeholder implementation
+    // When implementing the actual include command parsing logic,
+    // use the success and error functions as shown below
+
+    // On success:
+    // success("include-command", startLine);
+    // return true;
+
+    // On error:
+    // error("Invalid include command");
+    // return false;
+
+    return false;
+}
+bool Parser::parseFname()
+{
+    int startLine = peek().lineNumber;
+
+    // This is a placeholder implementation
+    // When implementing the actual filename parsing logic,
+    // use the success and error functions as shown below
+
+    // On success:
+    // success("filename", startLine);
+    // return true;
+
+    // On error:
+    // error("Invalid filename");
+    // return false;
+
+    return false;
+}
 
 ///////////////////////////
-
 
 // void Parser::parseDeclaration() {
 //     int startLine = peek().lineNumber;
@@ -497,4 +1086,3 @@ bool Parser::parseFname(){}
 // int Parser::getErrorCount() const {
 //     return errorCount;
 // }
-
