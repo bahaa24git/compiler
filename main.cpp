@@ -7,8 +7,8 @@ int main() {
     Scanner scanner;
     vector<Token> tokens = scanner.scanFile("D:\\anas\\collage\\compiler\\compiler from khaled\\compiler\\old\\input.txt");
     scanner.printTokens();
-    // Parser parser(tokens);
-    // parser.parse();
+    //Parser parser(tokens);
+    //parser.parse();
     return 0;
 }
 //
