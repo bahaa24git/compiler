@@ -94,7 +94,7 @@ int getErrorCount() const ;
 
 private:
     ////////////////////////////////////////////////////
-    bool parseVarDeclar();
+    bool parseVarDeclaration();
     bool parseTypeSpecifier();
     bool parseParams();
     bool parseParamList();
@@ -120,7 +120,24 @@ private:
     bool parseRelOp();
     bool parseSimpleExpression();
 
+    bool parseStatementList();
+    bool parseSelectionStatement();
+    bool parseIterationStatement();
+    bool parseJumpStatement();
+    bool parseStatement();
 
+    bool parseCompoundStatement();
+    bool parseFunDeclaration();
+
+    bool parseDeclaration();
+    bool parseDeclarationList();
+
+    bool parseProgram();
+    //////
+    bool parseLocalDeclarations();
+    bool parseComment();
+    bool parseIncludeCommand();
+    bool parseFname();
     ///////////////////////////////////
 
 

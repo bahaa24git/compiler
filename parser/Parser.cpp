@@ -103,7 +103,7 @@ bool Parser::parseArgs() {
     return true;
 }
 bool Parser::parseCall() {
-    if (matchType("Identifier"))
+    if (parseIdAssign())
         if(matchText("("))
             if(parseArgs())
             if(matchText(")"))
@@ -140,20 +140,7 @@ bool Parser::parseUnsignedNum() {
     return false;
 }
 
-bool Parser::parseVarDeclar(){
-    int startLine = peek().lineNumber;
-    if (parseTypeSpecifier()) {
-        if (matchType("Identifier")) {
-            if (matchText(";")) {
-                success("var-declaration", startLine);
-                return true;
-            } else {
-                error("Expected ';' after variable declaration");
-            }
-        }
-    }
-    return false;
-}
+
 
 bool Parser::parseTypeSpecifier() {
 
@@ -172,27 +159,12 @@ bool Parser::parseTypeSpecifier() {
     } else if (matchText("NOReturn")) {
         return true;
     }
-    
     return false;
 }
-
-bool Parser::parseParams(){
-    int startLine = peek().lineNumber;
-    
-    if (matchText(")")) {
-        success("params", startLine);
-        return true;
-    }
-    
-    if (parseParamList()) {
-        if (matchText(")")) {
-            success("params", startLine);
-            return true;
-        } else {
-            error("Expected ')' after parameter list");
-        }
-    }
-    return false;
+bool Parser::parseParams() {
+    if (matchText("NOReturn")) return true;
+    if (checkText(")")) return true; // ε
+    return parseParamList();
 }
 
 bool Parser::parseParamList(){
@@ -232,10 +204,7 @@ bool Parser::parseNum() {
     return false;
 }
 bool Parser::parseFactor() {
-    if ( parseIdAssign() || parseNum() || parseExpressionWithBraces() || parseCall()) {
-        return true;
-    }
-    return false;
+    return parseCall() || parseNum() || parseExpressionWithBraces() || parseIdAssign();
 }
 bool Parser::parseMulOp() {
     if(!(matchText("*") || matchText("/")))
@@ -296,6 +265,127 @@ bool Parser::parseExpressionStatement() {
     }
     return false;
 }
+bool Parser::parseStatementList() {
+    while (parseStatement());
+    return true; // epsilon allowed
+}
+bool Parser::parseSelectionStatement() {
+    if (!matchText("IfTrue")) return false;
+    if (!matchText("(")) return false;
+    if (!parseExpression()) return false;
+    if (!matchText(")")) return false;
+    if (!parseStatement()) return false;
+
+    if (matchText("Otherwise")) {
+        if (!parseStatement()) return false;
+    }
+    return true;
+}
+bool Parser::parseIterationStatement() {
+    if (matchText("RepeatWhen")) {
+        if (!matchText("(")) return false;
+        if (!parseExpression()) return false;
+        if (!matchText(")")) return false;
+        if (!parseStatement()) return false;
+        return true;
+    }
+    if (matchText("Reiterate")) {
+        if (!matchText("(")) return false;
+        if (!parseExpression()) return false;
+        if (!matchText(";")) return false;
+        if (!parseExpression()) return false;
+        if (!matchText(";")) return false;
+        if (!parseExpression()) return false;
+        if (!matchText(")")) return false;
+        if (!parseStatement()) return false;
+        return true;
+    }
+    return false;
+}
+bool Parser::parseJumpStatement() {
+    if (matchText("Turnback")) {
+        if (!parseExpression()) return false;
+        if (!matchText(";")) return false;
+        return true;
+    }
+    if (matchText("Stop")) {
+        if (!matchText(";")) return false;
+        return true;
+    }
+    return false;
+}
+bool Parser::parseStatement() {
+    if (parseExpressionStatement()) return true;
+    if (parseCompoundStatement()) return true;
+    if (parseSelectionStatement()) return true;
+    if (parseIterationStatement()) return true;
+    if (parseJumpStatement()) return true;
+    return false;
+}
+
+bool Parser::parseCompoundStatement() {
+    if (!matchText("{")) return false;
+    parseComment(); // optional comment before declarations
+    if (!parseLocalDeclarations()) return false;
+    if (!parseStatementList()) return false;
+    if (!matchText("}")) return false;
+    return true;
+}
+bool Parser::parseVarDeclaration(){
+    int startLine = peek().lineNumber;
+    if (parseTypeSpecifier()) {
+        if (matchType("Identifier")) {
+            if (matchText(";")) {
+                success("var-declaration", startLine);
+                return true;
+            } else {
+                error("Expected ';' after variable declaration");
+            }
+        }
+    }
+    return false;
+}
+bool Parser::parseFunDeclaration() {
+    if (parseComment()) {
+        if (parseTypeSpecifier() && matchType("Identifier")) {
+            success("fun-declaration (comment-style)", previous().lineNumber);
+            return true;
+        }
+        return false;
+    }
+
+    if (parseTypeSpecifier() && matchType("Identifier") &&
+        matchText("(") && parseParams() && matchText(")") &&
+        parseCompoundStatement()) {
+        success("fun-declaration", previous().lineNumber);
+        return true;
+        }
+
+    return false;
+}
+bool Parser::parseLocalDeclarations() {
+    while (parseVarDeclaration());
+    return true; // epsilon
+}
+bool Parser::parseDeclaration() {
+    return parseVarDeclaration() || parseFunDeclaration();
+}
+bool Parser::parseDeclarationList() {
+    if (!parseDeclaration()) return false;
+    while (parseDeclaration());
+    return true;
+}
+
+bool Parser::parseProgram() {
+    return parseDeclarationList() || parseComment() || parseIncludeCommand();
+}
+
+//////not implemented yet
+
+bool Parser::parseComment(){}
+bool Parser::parseIncludeCommand(){}
+bool Parser::parseFname(){}
+
 
 
 ///////////////////////////
