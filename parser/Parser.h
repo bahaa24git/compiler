@@ -111,6 +111,10 @@ private:
     bool parseExpressionStatement();
     bool parseExpressionWithBraces();
     bool parseCall();
+    bool parseArgList();
+    bool parseArgs();
+    bool parseRelOp();
+    bool parseSimpleExpression();
 
 
     ///////////////////////////////////

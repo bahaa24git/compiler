@@ -64,17 +64,53 @@ void Parser::success(const string& rule, int lineNumber) {
 
 
 
-///////////////////////////////
+///////////////////////////////14, 18-34 and 35. value → INT_NUM | FLOAT_NUM we only have constant
+bool Parser::parseRelOp() {
+    if( matchText("<=") || matchText(">=") ||
+        matchText("==") || matchText("!=") ||
+        matchText("<") || matchText(">") ||
+        matchText("&&") || matchText("||") )
+        return true;
+    return false;
+}
+bool Parser::parseSimpleExpression() {
+    if(!parseAdditiveExpression())
+        return false;
+    while (current < tokens.size() && parseRelOp())
+    {
+        if (!parseAdditiveExpression()) return false;
+    }
+    return true;
+}
 bool Parser::parseIdAssign() {
     if (matchType("Identifier"))
         return true;
     return false;
 }
-bool Parser::parseCall() {
-///?????????
-throw exception();
+bool Parser::parseArgList() {
+    if(!parseExpression())
+        return false;
+    while (current < tokens.size() && matchText(","))
+    {
+        if (!parseExpression()) return false;
+    }
+    return true;
 }
-bool Parser::parseValue() {//INT_NUM | FLOAT_NUM ????
+bool Parser::parseArgs() {
+    if(parseArgList())
+        return true;
+    // epsilon production (empty args)
+    return true;
+}
+bool Parser::parseCall() {
+    if (matchType("Identifier"))
+        if(matchText("("))
+            if(parseArgs())
+            if(matchText(")"))
+                return true;
+    return false;
+}
+bool Parser::parseValue() {//INT_NUM | FLOAT_NUM ???? 35
     if(matchType("Constant"))
         return true;
     return false;
@@ -145,15 +181,14 @@ bool Parser::parseAdditiveExpression() {
     return true;
 }
 
-bool Parser::parseExpression() {//id-assign = expression | simple-expression | id-assign
-    if (matchType("Identifier")) {
+bool Parser::parseExpression() {//this an important one
+    if (parseIdAssign()) {
         if (matchType("Assignment operator")) {
-            if (parseAdditiveExpression()) {
-                return true;
-            }
+            return parseExpression();
         }
+        return true;
     }
-    return false;
+    return parseSimpleExpression();
 }
 bool Parser::parseExpressionWithBraces() {
     if (matchText("("))

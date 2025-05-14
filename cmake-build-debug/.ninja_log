@@ -19,3 +19,14 @@
 137	1372	7688838182244373	CMakeFiles/compilerCpp.dir/parser/parser.cpp.obj	58375dc642e3eb36
 12	5234	7688838180995089	CMakeFiles/compilerCpp.dir/comp/project3_parser.cpp.obj	9f48edff6c3517f6
 5234	10929	7688838233215344	compilerCpp.exe	2eb2a0c6e9e10f6e
+494	2588	7689297048810341	CMakeFiles/compilerCpp.dir/comp/project3_parser_test.cpp.obj	ba25105e0dc1da43
+117	2750	7689297045043153	CMakeFiles/compilerCpp.dir/comp/project3_parser.cpp.obj	9f48edff6c3517f6
+583	4164	7689297049702547	CMakeFiles/compilerCpp.dir/main.cpp.obj	beb94310f96f64e9
+4164	8847	7689297085516394	compilerCpp.exe	2eb2a0c6e9e10f6e
+11	2945	7689314651596463	CMakeFiles/compilerCpp.dir/main.cpp.obj	beb94310f96f64e9
+94	3122	7689314652436000	CMakeFiles/compilerCpp.dir/parser/parser.cpp.obj	58375dc642e3eb36
+3122	7358	7689314682709400	compilerCpp.exe	2eb2a0c6e9e10f6e
+13	2021	7689318856899837	CMakeFiles/compilerCpp.dir/main.cpp.obj	beb94310f96f64e9
+2021	5779	7689318876988376	compilerCpp.exe	2eb2a0c6e9e10f6e
+10	5554	7689319883481534	CMakeFiles/compilerCpp.dir/scanner/Scanner.cpp.obj	4d0c1c95d41448c9
+5555	9227	7689319938914249	compilerCpp.exe	2eb2a0c6e9e10f6e
