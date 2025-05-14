@@ -39,7 +39,7 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = D$:/anas/CLion/compilerCpp/cmake-build-debug/
+cmake_ninja_workdir = D$:/anas/collage/compiler/compiler$ from$ khaled/compiler/cmake-build-debug/
 # =============================================================================
 # Object build statements for EXECUTABLE target compilerCpp
 
@@ -49,17 +49,59 @@ cmake_ninja_workdir = D$:/anas/CLion/compilerCpp/cmake-build-debug/
 
 build cmake_object_order_depends_target_compilerCpp: phony || .
 
-build CMakeFiles/compilerCpp.dir/main.cpp.obj: CXX_COMPILER__compilerCpp_unscanned_Debug D$:/anas/CLion/compilerCpp/main.cpp || cmake_object_order_depends_target_compilerCpp
+build CMakeFiles/compilerCpp.dir/old/main.cpp.obj: CXX_COMPILER__compilerCpp_unscanned_Debug D$:/anas/collage/compiler/compiler$ from$ khaled/compiler/old/main.cpp || cmake_object_order_depends_target_compilerCpp
+  DEP_FILE = CMakeFiles\compilerCpp.dir\old\main.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\compilerCpp.dir
+  OBJECT_FILE_DIR = CMakeFiles\compilerCpp.dir\old
+
+build CMakeFiles/compilerCpp.dir/old/scanner.cpp.obj: CXX_COMPILER__compilerCpp_unscanned_Debug D$:/anas/collage/compiler/compiler$ from$ khaled/compiler/old/scanner.cpp || cmake_object_order_depends_target_compilerCpp
+  DEP_FILE = CMakeFiles\compilerCpp.dir\old\scanner.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\compilerCpp.dir
+  OBJECT_FILE_DIR = CMakeFiles\compilerCpp.dir\old
+
+build CMakeFiles/compilerCpp.dir/comp/project3_scanner.cpp.obj: CXX_COMPILER__compilerCpp_unscanned_Debug D$:/anas/collage/compiler/compiler$ from$ khaled/compiler/comp/project3_scanner.cpp || cmake_object_order_depends_target_compilerCpp
+  DEP_FILE = CMakeFiles\compilerCpp.dir\comp\project3_scanner.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\compilerCpp.dir
+  OBJECT_FILE_DIR = CMakeFiles\compilerCpp.dir\comp
+
+build CMakeFiles/compilerCpp.dir/comp/project3_parser.cpp.obj: CXX_COMPILER__compilerCpp_unscanned_Debug D$:/anas/collage/compiler/compiler$ from$ khaled/compiler/comp/project3_parser.cpp || cmake_object_order_depends_target_compilerCpp
+  DEP_FILE = CMakeFiles\compilerCpp.dir\comp\project3_parser.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\compilerCpp.dir
+  OBJECT_FILE_DIR = CMakeFiles\compilerCpp.dir\comp
+
+build CMakeFiles/compilerCpp.dir/comp/project3_parser_test.cpp.obj: CXX_COMPILER__compilerCpp_unscanned_Debug D$:/anas/collage/compiler/compiler$ from$ khaled/compiler/comp/project3_parser_test.cpp || cmake_object_order_depends_target_compilerCpp
+  DEP_FILE = CMakeFiles\compilerCpp.dir\comp\project3_parser_test.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\compilerCpp.dir
+  OBJECT_FILE_DIR = CMakeFiles\compilerCpp.dir\comp
+
+build CMakeFiles/compilerCpp.dir/comp/test_error_handling.cpp.obj: CXX_COMPILER__compilerCpp_unscanned_Debug D$:/anas/collage/compiler/compiler$ from$ khaled/compiler/comp/test_error_handling.cpp || cmake_object_order_depends_target_compilerCpp
+  DEP_FILE = CMakeFiles\compilerCpp.dir\comp\test_error_handling.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\compilerCpp.dir
+  OBJECT_FILE_DIR = CMakeFiles\compilerCpp.dir\comp
+
+build CMakeFiles/compilerCpp.dir/main.cpp.obj: CXX_COMPILER__compilerCpp_unscanned_Debug D$:/anas/collage/compiler/compiler$ from$ khaled/compiler/main.cpp || cmake_object_order_depends_target_compilerCpp
   DEP_FILE = CMakeFiles\compilerCpp.dir\main.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\compilerCpp.dir
   OBJECT_FILE_DIR = CMakeFiles\compilerCpp.dir
 
-build CMakeFiles/compilerCpp.dir/scanner.cpp.obj: CXX_COMPILER__compilerCpp_unscanned_Debug D$:/anas/CLion/compilerCpp/scanner.cpp || cmake_object_order_depends_target_compilerCpp
-  DEP_FILE = CMakeFiles\compilerCpp.dir\scanner.cpp.obj.d
+build CMakeFiles/compilerCpp.dir/scanner/Scanner.cpp.obj: CXX_COMPILER__compilerCpp_unscanned_Debug D$:/anas/collage/compiler/compiler$ from$ khaled/compiler/scanner/Scanner.cpp || cmake_object_order_depends_target_compilerCpp
+  DEP_FILE = CMakeFiles\compilerCpp.dir\scanner\Scanner.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\compilerCpp.dir
-  OBJECT_FILE_DIR = CMakeFiles\compilerCpp.dir
+  OBJECT_FILE_DIR = CMakeFiles\compilerCpp.dir\scanner
+
+build CMakeFiles/compilerCpp.dir/parser/parser.cpp.obj: CXX_COMPILER__compilerCpp_unscanned_Debug D$:/anas/collage/compiler/compiler$ from$ khaled/compiler/parser/parser.cpp || cmake_object_order_depends_target_compilerCpp
+  DEP_FILE = CMakeFiles\compilerCpp.dir\parser\parser.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\compilerCpp.dir
+  OBJECT_FILE_DIR = CMakeFiles\compilerCpp.dir\parser
 
 
 # =============================================================================
@@ -69,7 +111,7 @@ build CMakeFiles/compilerCpp.dir/scanner.cpp.obj: CXX_COMPILER__compilerCpp_unsc
 #############################################
 # Link the executable compilerCpp.exe
 
-build compilerCpp.exe: CXX_EXECUTABLE_LINKER__compilerCpp_Debug CMakeFiles/compilerCpp.dir/main.cpp.obj CMakeFiles/compilerCpp.dir/scanner.cpp.obj
+build compilerCpp.exe: CXX_EXECUTABLE_LINKER__compilerCpp_Debug CMakeFiles/compilerCpp.dir/old/main.cpp.obj CMakeFiles/compilerCpp.dir/old/scanner.cpp.obj CMakeFiles/compilerCpp.dir/comp/project3_scanner.cpp.obj CMakeFiles/compilerCpp.dir/comp/project3_parser.cpp.obj CMakeFiles/compilerCpp.dir/comp/project3_parser_test.cpp.obj CMakeFiles/compilerCpp.dir/comp/test_error_handling.cpp.obj CMakeFiles/compilerCpp.dir/main.cpp.obj CMakeFiles/compilerCpp.dir/scanner/Scanner.cpp.obj CMakeFiles/compilerCpp.dir/parser/parser.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\compilerCpp.dir
@@ -84,7 +126,7 @@ build compilerCpp.exe: CXX_EXECUTABLE_LINKER__compilerCpp_Debug CMakeFiles/compi
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\anas\CLion\compilerCpp\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D "D:\anas\collage\compiler\compiler from khaled\compiler\cmake-build-debug" && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -95,7 +137,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\anas\CLion\compilerCpp\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SD:\anas\CLion\compilerCpp -BD:\anas\CLion\compilerCpp\cmake-build-debug"
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D "D:\anas\collage\compiler\compiler from khaled\compiler\cmake-build-debug" && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S"D:\anas\collage\compiler\compiler from khaled\compiler" -B"D:\anas\collage\compiler\compiler from khaled\compiler\cmake-build-debug""
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -113,7 +155,7 @@ build compilerCpp: phony compilerCpp.exe
 # =============================================================================
 
 #############################################
-# Folder: D:/anas/CLion/compilerCpp/cmake-build-debug
+# Folder: D:/anas/collage/compiler/compiler from khaled/compiler/cmake-build-debug
 
 build all: phony compilerCpp.exe
 
@@ -124,14 +166,14 @@ build all: phony compilerCpp.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.29.6/CMakeCCompiler.cmake CMakeFiles/3.29.6/CMakeCXXCompiler.cmake CMakeFiles/3.29.6/CMakeRCCompiler.cmake CMakeFiles/3.29.6/CMakeSystem.cmake D$:/anas/CLion/compilerCpp/CMakeLists.txt
+build build.ninja: RERUN_CMAKE | C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.29.6/CMakeCCompiler.cmake CMakeFiles/3.29.6/CMakeCXXCompiler.cmake CMakeFiles/3.29.6/CMakeRCCompiler.cmake CMakeFiles/3.29.6/CMakeSystem.cmake D$:/anas/collage/compiler/compiler$ from$ khaled/compiler/CMakeLists.txt
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.29.6/CMakeCCompiler.cmake CMakeFiles/3.29.6/CMakeCXXCompiler.cmake CMakeFiles/3.29.6/CMakeRCCompiler.cmake CMakeFiles/3.29.6/CMakeSystem.cmake D$:/anas/CLion/compilerCpp/CMakeLists.txt: phony
+build C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.29.6/CMakeCCompiler.cmake CMakeFiles/3.29.6/CMakeCXXCompiler.cmake CMakeFiles/3.29.6/CMakeRCCompiler.cmake CMakeFiles/3.29.6/CMakeSystem.cmake D$:/anas/collage/compiler/compiler$ from$ khaled/compiler/CMakeLists.txt: phony
 
 
 #############################################

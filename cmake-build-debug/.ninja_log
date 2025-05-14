@@ -1,4 +1,21 @@
 # ninja log v6
-85	1299	7688187263569245	CMakeFiles/compilerCpp.dir/scanner.cpp.obj	74d28f3006c3b8fa
-5	1445	7688187262759712	CMakeFiles/compilerCpp.dir/main.cpp.obj	18f223e312c37e06
-1447	2299	7688187277181468	compilerCpp.exe	8f65fd517c430155
+123	966	7688570419868793	CMakeFiles/compilerCpp.dir/scanner.cpp.obj	ed80bd9a964702e
+190	1587	7688702756436592	CMakeFiles/compilerCpp.dir/comp/project3_parser_test.cpp.obj	ba25105e0dc1da43
+170	2708	7688761123630239	CMakeFiles/compilerCpp.dir/main.cpp.obj	beb94310f96f64e9
+5917	9600	7688771537468509	compilerCpp.exe	833ad91c8b60e383
+12	934	7688702754657474	CMakeFiles/compilerCpp.dir/comp/project3_scanner.cpp.obj	d7f47c7b3dac8f5
+110	1288	7688702755646904	CMakeFiles/compilerCpp.dir/comp/project3_parser.cpp.obj	9f48edff6c3517f6
+935	1946	7688702763892878	CMakeFiles/compilerCpp.dir/comp/test_error_handling.cpp.obj	91ad1bebf74aef89
+473	2960	7688698357981122	CMakeFiles/compilerCpp.dir/old/scanner.cpp.obj	3ae77f75eeb22521
+113	3029	7688698354373191	CMakeFiles/compilerCpp.dir/old/main.cpp.obj	ed2cee4dd24dc16d
+12	5893	7688771478421231	CMakeFiles/compilerCpp.dir/scanner/scanner.cpp.obj	cbe1315e6c177a1e
+15	3844	7688833947349093	CMakeFiles/compilerCpp.dir/comp/project3_parser_test.cpp.obj	ba25105e0dc1da43
+11	2391	7688835762208193	CMakeFiles/compilerCpp.dir/main.cpp.obj	beb94310f96f64e9
+147	3068	7688835763567423	CMakeFiles/compilerCpp.dir/parser/parser.cpp.obj	58375dc642e3eb36
+73	6062	7688835762827843	CMakeFiles/compilerCpp.dir/scanner/Scanner.cpp.obj	4d0c1c95d41448c9
+11	486	7688836084686988	CMakeFiles/compilerCpp.dir/comp/project3_parser_test.cpp.obj	ba25105e0dc1da43
+486	4211	7688836089434287	compilerCpp.exe	2eb2a0c6e9e10f6e
+78	976	7688838181654712	CMakeFiles/compilerCpp.dir/main.cpp.obj	beb94310f96f64e9
+137	1372	7688838182244373	CMakeFiles/compilerCpp.dir/parser/parser.cpp.obj	58375dc642e3eb36
+12	5234	7688838180995089	CMakeFiles/compilerCpp.dir/comp/project3_parser.cpp.obj	9f48edff6c3517f6
+5234	10929	7688838233215344	compilerCpp.exe	2eb2a0c6e9e10f6e

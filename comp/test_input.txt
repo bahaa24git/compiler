@@ -4,7 +4,7 @@ This file demonstrates all language features
 @/
 
 /^ Include statement for external files
-Include("helper.txt");
+Include("D:\anas\collage\compiler\compiler from khaled\compiler\comp\helper.txt");
 
 /^ Structure definition
 Loli Person {

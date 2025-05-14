@@ -1,4 +1,4 @@
-# Install script for directory: D:/anas/CLion/compilerCpp
+# Install script for directory: D:/anas/collage/compiler/compiler from khaled/compiler
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "D:/anas/CLion/compilerCpp/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "D:/anas/collage/compiler/compiler from khaled/compiler/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
