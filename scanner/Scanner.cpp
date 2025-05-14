@@ -294,7 +294,7 @@ void Scanner::scanLine(string line, const string& filename, int lineNumber) {
             // Check if multi-line comment ends on same line
             size_t endPos = line.find("@/", startPos + 2);
             if (endPos != string::npos) {
-                addToken(lineNumber, line.substr(startPos + 2, endPos), "Comment Content");
+                addToken(lineNumber, line.substr(startPos + 2, endPos-2), "Comment Content");
             }
             else {
                 addToken(lineNumber, line.substr(startPos + 2), "Comment Content");
