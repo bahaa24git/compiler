@@ -93,16 +93,23 @@ void Scanner::tokenizeLine(const string &line, int lineNumber) {
                 continue;
             }
 
-            // Handle special characters and operators
-            // if (c == ',') {
-            //     if (!currentToken.empty()) {
-            //         processToken(currentToken, lineNumber);
-            //         currentToken = "";
-            //     }
-            //     addToken(lineNumber, string(1, c), "Quotation Mark");
-            //     continue;
-            // }
-            if (c == ';' || c == ',' || c == ':' || c == '.') {
+            if (c == ',') {
+                if (!currentToken.empty()) {
+                    processToken(currentToken, lineNumber);
+                    currentToken = "";
+                }
+                addToken(lineNumber, string(1, c), "Quotation Mark");
+                continue;
+            }
+            if (c == ';') {
+                if (!currentToken.empty()) {
+                    processToken(currentToken, lineNumber);
+                    currentToken = "";
+                }
+                addToken(lineNumber, string(1, c), "End Of Statment");
+                continue;
+            }
+            if (c == ':' || c == '.') {
                 if (!currentToken.empty()) {
                     processToken(currentToken, lineNumber);
                     currentToken = "";

@@ -921,64 +921,105 @@ bool Parser::parseProgram()
     return false;
 }
 
-//////not implemented yet
 
-bool Parser::parseComment()
-{
-    int startLine = peek().lineNumber;
+bool Parser::parseComment() {
+    if (matchText("/@")) {
+        while (!matchText("@/") && current < tokens.size()) {
+            advance();
+        }
+        success("comment (multi-line)", previous().lineNumber);
+        return true;
+    }
 
-    // This is a placeholder implementation
-    // When implementing the actual comment parsing logic,
-    // use the success and error functions as shown below
-
-    // On success:
-    // success("comment", startLine);
-    // return true;
-
-    // On error:
-    // error("Invalid comment structure");
-    // return false;
-
-    return false;
-}
-bool Parser::parseIncludeCommand()
-{
-    int startLine = peek().lineNumber;
-
-    // This is a placeholder implementation
-    // When implementing the actual include command parsing logic,
-    // use the success and error functions as shown below
-
-    // On success:
-    // success("include-command", startLine);
-    // return true;
-
-    // On error:
-    // error("Invalid include command");
-    // return false;
+    if (matchText("/^")) {
+        // Consume rest of the line or until end
+        while (current < tokens.size() && tokens[current].lineNumber == previous().lineNumber) {
+            advance();
+        }
+        success("comment (single-line)", previous().lineNumber);
+        return true;
+    }
 
     return false;
 }
-bool Parser::parseFname()
-{
-    int startLine = peek().lineNumber;
 
-    // This is a placeholder implementation
-    // When implementing the actual filename parsing logic,
-    // use the success and error functions as shown below
-
-    // On success:
-    // success("filename", startLine);
-    // return true;
-
-    // On error:
-    // error("Invalid filename");
-    // return false;
-
+bool Parser::parseIncludeCommand() {
+    if (matchText("Include")) {
+        if (matchText("(")) {
+            if (parseFName()) {
+                if (matchText(".txt")) {
+                    if (matchText(")")) {
+                        if (matchText(";")) {
+                            success("include_command", previous().lineNumber);
+                            return true;
+                        } else {
+                            error("Expected ';' after include command");
+                        }
+                    } else {
+                        error("Expected ')' in include command");
+                    }
+                } else {
+                    error("Expected '.txt' after filename in include command");
+                }
+            }
+        } else {
+            error("Expected '(' in include command");
+        }
+    }
     return false;
 }
+
+bool Parser::parseFName() {
+    if (matchType("Identifier")) {
+        success("F_name", previous().lineNumber);
+        return true;
+    }
+    return false;
+}
+
+
+
 
 ///////////////////////////
+
+
+// void Parser::parseProgram() {
+//     while (!checkType("EOF")) {
+//         parseDeclaration();
+//     }
+// }
+// void Parser::parse() {
+//     try {
+//         parseProgram();
+//     } catch (const std::exception& e) {
+//         // Catch any exceptions and continue parsing
+//         cerr << "Error during parsing: " << e.what() << endl;
+//     }
+//
+//     // Print all errors found during parsing
+//     cout << "Total NO of errors: " << errorCount << endl;
+// }
+
+void Parser::parse() {
+    if (!parseProgram()) {
+        error("Invalid program structure");
+    }
+
+    if (current < tokens.size()) {
+        error("Unexpected tokens after program end");
+    }
+
+    std::cout << "Total NO of errors: " << errorCount << std::endl;
+}
+// Getter for error count
+int Parser::getErrorCount() const {
+    return errorCount;
+}
+
+
+
+
+/////////////////////////////////
 
 // void Parser::parseDeclaration() {
 //     int startLine = peek().lineNumber;
@@ -1064,25 +1105,6 @@ bool Parser::parseFname()
 //     // Try to parse a statement
 //     parseStatement();
 // }
-//
-// void Parser::parseProgram() {
-//     while (!checkType("EOF")) {
-//         parseDeclaration();
-//     }
-// }
-// void Parser::parse() {
-//     try {
-//         parseProgram();
-//     } catch (const std::exception& e) {
-//         // Catch any exceptions and continue parsing
-//         cerr << "Error during parsing: " << e.what() << endl;
-//     }
-//
-//     // Print all errors found during parsing
-//     cout << "Total NO of errors: " << errorCount << endl;
-// }
-//
-// // Getter for error count
-// int Parser::getErrorCount() const {
-//     return errorCount;
-// }
+
+
+
