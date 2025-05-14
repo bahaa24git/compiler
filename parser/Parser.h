@@ -94,7 +94,11 @@ int getErrorCount() const ;
 
 private:
     ////////////////////////////////////////////////////
-
+    bool parseVarDeclar();
+    bool parseTypeSpecifier();
+    bool parseParams();
+    bool parseParamList();
+    bool parseParam();
     bool parseValue();
     bool parsePosNum();
     bool parseNegNum();

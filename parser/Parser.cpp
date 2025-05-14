@@ -139,6 +139,91 @@ bool Parser::parseUnsignedNum() {
         return true;
     return false;
 }
+
+bool Parser::parseVarDeclar(){
+    int startLine = peek().lineNumber;
+    if (parseTypeSpecifier()) {
+        if (matchType("Identifier")) {
+            if (matchText(";")) {
+                success("var-declaration", startLine);
+                return true;
+            } else {
+                error("Expected ';' after variable declaration");
+            }
+        }
+    }
+    return false;
+}
+
+bool Parser::parseTypeSpecifier() {
+
+    if (matchText("Imw")) {
+        return true;
+    } else if (matchText("SIMw")) {
+        return true;
+    } else if (matchText("Chj")) {
+        return true;
+    } else if (matchText("Series")) {
+        return true;
+    } else if (matchText("IMwf")) {
+        return true;
+    } else if (matchText("SIMwf")) {
+        return true;
+    } else if (matchText("NOReturn")) {
+        return true;
+    }
+    
+    return false;
+}
+
+bool Parser::parseParams(){
+    int startLine = peek().lineNumber;
+    
+    if (matchText(")")) {
+        success("params", startLine);
+        return true;
+    }
+    
+    if (parseParamList()) {
+        if (matchText(")")) {
+            success("params", startLine);
+            return true;
+        } else {
+            error("Expected ')' after parameter list");
+        }
+    }
+    return false;
+}
+
+bool Parser::parseParamList(){
+    int startLine = peek().lineNumber;
+    
+    if (parseParam()) {
+        while (matchText(",")) {
+            if (!parseParam()) {
+                error("Expected parameter after ','");
+                return false;
+            }
+        }   
+        success("param-list", startLine);
+        return true;
+    }
+    return false;
+}
+
+bool Parser::parseParam(){
+    int startLine = peek().lineNumber;
+    if (parseTypeSpecifier()) {
+        if (matchType("Identifier")) {
+            success("param", startLine);
+            return true;
+        } else {
+            error("Expected identifier after type specifier in parameter");
+        }
+    }
+    return false;
+}
+
 bool Parser::parseNum() {
     if(parseSignedNum())
             return true;
