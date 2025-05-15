@@ -4,16 +4,16 @@
 #include "scanner/Scanner.h"
 #include "parser/Parser.h"
 int main() {
+    cout << "Scanner Output:\n";
     Scanner scanner;
     vector<Token> tokens = scanner.scanFile("D:\\anas\\collage\\compiler\\compiler from khaled\\compiler\\old\\input.txt");
     scanner.printTokens();
-    //Parser parser(tokens);
-    //parser.parse();
+    cout << endl << endl;
+    cout << "Parser Output:\n";
+    Parser parser(tokens);
+    parser.parse();
     return 0;
 }
-//
-//Line : 8 Token Text: , Token Type: Punctuation
-//Line : 10 Token Text: ; Token Type: Punctuation
 
 //cout << "Line : " << token.lineNumber << " Error in Token Text: " << token.text << " Token Type: Invalid Identifier" << endl;
 

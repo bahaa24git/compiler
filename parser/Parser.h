@@ -51,37 +51,16 @@ void error(const string& message);
 
 void success(const string& rule, int lineNumber);
 
-// void parseProgram();
-// void parseDeclaration();
-//
-// void parseInclude();
-//
+
 // void parseStructDeclaration();
-//
-// void parseFunctionDeclaration(const string& returnType, const string& functionName, int startLine);
-//
-// bool parseVariableDeclaration();
-//
-// void parseStatement();
-//
-// void parseCompoundStatement();
-//
-// void parseSelectionStatement(int startLine);
-//
-// void parseIterationStatement(int startLine);
-//
-// void parseJumpStatement(int startLine);
-//
-// bool parseExpressionStatement();
-//
-// bool parseExpression();
 
 
 public:
-// Parser(const vector<Token>& tokens) : tokens(tokens) {
-//     // Initialize with some common types that might be used in the program
-//     customTypes.insert("Person");
-// }
+Parser(const vector<Token>& tokens) : tokens(tokens) {
+    // Initialize with some common types that might be used in the program
+    errorCount = 0;
+    customTypes.insert("Person");
+}
 
 void parse();
 
@@ -137,7 +116,7 @@ private:
     bool parseLocalDeclarations();
     bool parseComment();
     bool parseIncludeCommand();
-    bool parseFname();
+    bool parseFName();
     ///////////////////////////////////
 
 

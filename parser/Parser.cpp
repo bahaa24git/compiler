@@ -380,16 +380,105 @@ bool Parser::parseProgram() {
     return parseDeclarationList() || parseComment() || parseIncludeCommand();
 }
 
-//////not implemented yet
 
-bool Parser::parseComment(){}
-bool Parser::parseIncludeCommand(){}
-bool Parser::parseFname(){}
+bool Parser::parseComment() {
+    if (matchText("/@")) {
+        while (!matchText("@/") && current < tokens.size()) {
+            advance();
+        }
+        success("comment (multi-line)", previous().lineNumber);
+        return true;
+    }
+
+    if (matchText("/^")) {
+        // Consume rest of the line or until end
+        while (current < tokens.size() && tokens[current].lineNumber == previous().lineNumber) {
+            advance();
+        }
+        success("comment (single-line)", previous().lineNumber);
+        return true;
+    }
+
+    return false;
+}
+
+bool Parser::parseIncludeCommand() {
+    if (matchText("Include")) {
+        if (matchText("(")) {
+            if (parseFName()) {
+                if (matchText(".txt")) {
+                    if (matchText(")")) {
+                        if (matchText(";")) {
+                            success("include_command", previous().lineNumber);
+                            return true;
+                        } else {
+                            error("Expected ';' after include command");
+                        }
+                    } else {
+                        error("Expected ')' in include command");
+                    }
+                } else {
+                    error("Expected '.txt' after filename in include command");
+                }
+            }
+        } else {
+            error("Expected '(' in include command");
+        }
+    }
+    return false;
+}
+
+bool Parser::parseFName() {
+    if (matchType("Identifier")) {
+        success("F_name", previous().lineNumber);
+        return true;
+    }
+    return false;
+}
+
 
 
 
 ///////////////////////////
 
+
+// void Parser::parseProgram() {
+//     while (!checkType("EOF")) {
+//         parseDeclaration();
+//     }
+// }
+// void Parser::parse() {
+//     try {
+//         parseProgram();
+//     } catch (const std::exception& e) {
+//         // Catch any exceptions and continue parsing
+//         cerr << "Error during parsing: " << e.what() << endl;
+//     }
+//
+//     // Print all errors found during parsing
+//     cout << "Total NO of errors: " << errorCount << endl;
+// }
+
+void Parser::parse() {
+    if (!parseProgram()) {
+        error("Invalid program structure");
+    }
+
+    if (current < tokens.size()) {
+        error("Unexpected tokens after program end");
+    }
+
+    std::cout << "Total NO of errors: " << errorCount << std::endl;
+}
+// Getter for error count
+int Parser::getErrorCount() const {
+    return errorCount;
+}
+
+
+
+
+/////////////////////////////////
 
 // void Parser::parseDeclaration() {
 //     int startLine = peek().lineNumber;
@@ -475,26 +564,6 @@ bool Parser::parseFname(){}
 //     // Try to parse a statement
 //     parseStatement();
 // }
-//
-// void Parser::parseProgram() {
-//     while (!checkType("EOF")) {
-//         parseDeclaration();
-//     }
-// }
-// void Parser::parse() {
-//     try {
-//         parseProgram();
-//     } catch (const std::exception& e) {
-//         // Catch any exceptions and continue parsing
-//         cerr << "Error during parsing: " << e.what() << endl;
-//     }
-//
-//     // Print all errors found during parsing
-//     cout << "Total NO of errors: " << errorCount << endl;
-// }
-//
-// // Getter for error count
-// int Parser::getErrorCount() const {
-//     return errorCount;
-// }
+
+
 
