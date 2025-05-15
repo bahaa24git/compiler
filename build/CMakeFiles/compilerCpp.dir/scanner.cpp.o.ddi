@@ -1,9 +1,0 @@
-{
-  "revision": 0,
-  "rules": [
-    {
-      "primary-output": "CMakeFiles/compilerCpp.dir/scanner.cpp.o"
-    }
-  ],
-  "version": 1
-}

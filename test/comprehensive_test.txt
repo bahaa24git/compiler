@@ -1,0 +1,235 @@
+/@ 
+   Comprehensive Test File for Language Compiler
+   This file tests all features of the language:
+   - Comments (multi-line and single-line)
+   - Type declarations
+   - Variable declarations
+   - Function declarations
+   - Control structures
+   - Expressions and operators
+   - Error cases
+@/
+
+/^ Including another file example (comment form) ^/
+Include(testHeader.txt);
+
+/@ Test basic variable declarations with different types @/
+Imw intVar;
+SIMw signedIntVar;
+Chj charVar;
+Series stringVar;
+IMwf floatVar;
+SIMwf signedFloatVar;
+
+/@ Test variable declarations with initializations @/
+Imw x = 10;
+IMwf y = 3.14;
+Chj c = 'a';
+
+/@ Test multiple variable declarations @/
+Imw a, b, c;
+IMwf d = 1.0, e = 2.0, f;
+
+/@ Test function declaration with no parameters @/
+NOReturn displayMessage() {
+    /^ This is a function with no return value and no parameters ^/
+    Series message = "Hello, World!";
+}
+
+/@ Test function declaration with parameters @/
+Imw add(Imw a, Imw b) {
+    Turnback a + b;
+}
+
+/@ Test function with different parameter types @/
+IMwf calculateArea(IMwf radius) {
+    IMwf pi = 3.14159;
+    Turnback pi * radius * radius;
+}
+
+/@ Test nested blocks and variable scope @/
+NOReturn complexFunction(Imw param1, IMwf param2) {
+    Imw localVar = param1 * 2;
+    
+    {
+        Imw innerVar = localVar + 5;
+        IMwf result = innerVar * param2;
+    }
+    
+    /^ This should work since localVar is still in scope ^/
+    localVar = localVar + 10;
+}
+
+/@ Test conditional statements @/
+NOReturn testConditionals(Imw value) {
+    IfTrue (value > 0) {
+        /^ Do something with positive values ^/
+        value = value * 2;
+    }
+    Otherwise {
+        /^ Do something with zero or negative values ^/
+        value = 0;
+    }
+    
+    /^ Test nested conditionals ^/
+    IfTrue (value < 10) {
+        IfTrue (value == 0) {
+            value = 1;
+        }
+        Otherwise {
+            value = value + 1;
+        }
+    }
+}
+
+/@ Test loop statements @/
+NOReturn testLoops(Imw n) {
+    /^ Test while loop ^/
+    Imw i = 0;
+    RepeatWhen (i < n) {
+        i = i + 1;
+    }
+    
+    /^ Test for loop ^/
+    Reiterate (Imw j = 0; j < n; j = j + 1) {
+        IfTrue (j == 5) {
+            /^ Test continue equivalent ^/
+            Stop;
+        }
+    }
+}
+
+/@ Test arithmetic and logical operators @/
+Imw testOperators(Imw a, Imw b) {
+    Imw result;
+    
+    /^ Arithmetic operators ^/
+    result = a + b;    /^ Addition ^/
+    result = a - b;    /^ Subtraction ^/
+    result = a * b;    /^ Multiplication ^/
+    result = a / b;    /^ Division ^/
+    
+    /^ Relational operators ^/
+    IfTrue (a == b) {
+        result = 1;
+    }
+    IfTrue (a != b) {
+        result = 2;
+    }
+    IfTrue (a < b) {
+        result = 3;
+    }
+    IfTrue (a <= b) {
+        result = 4;
+    }
+    IfTrue (a > b) {
+        result = 5;
+    }
+    IfTrue (a >= b) {
+        result = 6;
+    }
+    
+    /^ Logical operators ^/
+    IfTrue (a > 0 && b > 0) {
+        result = 7;
+    }
+    IfTrue (a > 0 || b > 0) {
+        result = 8;
+    }
+    
+    Turnback result;
+}
+
+/@ Test complex expressions @/
+IMwf complexExpression(IMwf x, IMwf y) {
+    IMwf result = (x + y) * (x - y) / (x * y + 1.0);
+    Turnback result;
+}
+
+/@ Test function calls @/
+Imw testFunctionCalls() {
+    Imw sum = add(5, 3);
+    IMwf area = calculateArea(2.5);
+    testOperators(10, 20);
+    
+    Turnback sum;
+}
+
+/@ Test error cases - these should generate appropriate errors @/
+
+/^ Test case: Invalid identifier starting with digit ^/
+Imw 1invalidVar = 10;
+
+/^ Test case: Missing semicolon ^/
+Imw errorVar1 = 20
+
+/^ Test case: Missing closing brace ^/
+NOReturn incompleteFunction() {
+    Imw x = 10;
+    IfTrue (x > 0) {
+        x = x + 1;
+    /^ Missing closing brace ^/
+
+/^ Test case: Invalid operator ^/
+Imw invalidOp = 5 $ 3;
+
+/^ Test case: Unclosed comment ^/
+/@ This comment doesn't have a closing tag
+
+/^ Test case: Mismatched types ^/
+Imw stringAsInt = "This should be an error";
+
+/@ Test case: Multiple errors on one line @/
+Imw a = 5 b = 10;
+
+/@ Test case: Extra closing brace @/
+NOReturn tooManyBraces() {
+    Imw x = 10;
+}
+}
+
+/@ Test main function with comprehensive program @/
+Imw main() {
+    Imw result = 0;
+    
+    /^ Variable declarations ^/
+    Imw count = 10;
+    IMwf price = 9.99;
+    
+    /^ Test arithmetic operations ^/
+    Imw sum = count + 5;
+    Imw product = count * 2;
+    IMwf total = price * count;
+    
+    /^ Test conditional statement ^/
+    IfTrue (count > 5) {
+        IfTrue (price < 10.0) {
+            result = result + 1;
+        }
+        Otherwise {
+            result = result - 1;
+        }
+    }
+    
+    /^ Test loop (while) ^/
+    Imw i = 0;
+    RepeatWhen (i < count) {
+        result = result + i;
+        i = i + 1;
+    }
+    
+    /^ Test loop (for) ^/
+    Reiterate (Imw j = 0; j < 5; j = j + 1) {
+        result = result * 2;
+    }
+    
+    /^ Test function call ^/
+    result = add(result, count);
+    
+    /^ Test nested expressions ^/
+    result = result + (5 * (3 + 2)) / (1 + 1);
+    
+    Turnback result;
+}
+
+/@ End of test file @/

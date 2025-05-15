@@ -1,3 +1,0 @@
-D:/anas/collage/compiler/compiler from khaled/compiler/cmake-build-debug/CMakeFiles/compilerCpp.dir
-D:/anas/collage/compiler/compiler from khaled/compiler/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/anas/collage/compiler/compiler from khaled/compiler/cmake-build-debug/CMakeFiles/rebuild_cache.dir

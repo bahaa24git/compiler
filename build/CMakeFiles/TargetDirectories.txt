@@ -1,3 +1,0 @@
-/home/fedusr/compiler/build/CMakeFiles/compilerCpp.dir
-/home/fedusr/compiler/build/CMakeFiles/edit_cache.dir
-/home/fedusr/compiler/build/CMakeFiles/rebuild_cache.dir
