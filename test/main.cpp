@@ -10,7 +10,7 @@
 int main()
 {
     // Use functional composition to build the compiler pipeline
-    const string inputPath = "/mnt/driveE/D/FCAI-H/3rd Junior/2nd term/Compilers/project/test/input.txt";
+    const string inputPath = "/mnt/driveE/D/FCAI-H/3rd Junior/2nd term/Compilers/project/compiler/test/input.txt";
 
     cout << "Scanner Output:\n";
     auto scanResult = Scanner::scanFile(inputPath);

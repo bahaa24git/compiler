@@ -1,7 +1,7 @@
-/@ This is two  @/
-Imw/@This is main function
-    This is one
-
-also in one@/4s = 3* 100+6;
-
-/@ This is two  @/
+/@ This is main function @/
+NOReturn decrease() {
+int 3num = 5;
+RepeatWhen (counter < num) {
+reg3 = reg3 - 1;
+}
+}
