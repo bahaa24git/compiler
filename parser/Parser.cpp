@@ -51,6 +51,7 @@ bool Parser::matchText(const string &text)
     return false;
 }
 
+
 void Parser::advance()
 {
     if (current < tokens.size())
@@ -58,6 +59,7 @@ void Parser::advance()
         current++;
     }
 }
+
 
 void Parser::error(const string &message)
 {
@@ -70,6 +72,7 @@ void Parser::error(const string &message)
     cerr << endl;
     errorCount++;
 }
+
 
 void Parser::success(const string &rule, int lineNumber)
 {
